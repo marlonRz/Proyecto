@@ -1,12 +1,15 @@
 import { NavLink } from "react-router";
 import "./Header.css";
+import logo from "../../assets/img/biodigest_logo.png";
+
 
 const Header = () => {
   return (
     <header>
       <nav>
+      <img src={logo} alt="" className="header-logo-biodigest" />
         <NavLink className="nav-link-company" to="/" end>
-          <img src="../assets/img/biodigest.png" alt="" />BioDigest
+          BioDigest
         </NavLink>
         <NavLink className="nav-link" to="about-we" end>
           Nosotros
