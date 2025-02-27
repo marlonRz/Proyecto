@@ -1,0 +1,55 @@
+html, body, #root {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    user-select: none;
+    overflow-x: hidden;
+    font-family: "Space Grotesk", serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    background: #0c2005;
+}
+h1{
+    font-size: xx-large;
+    color: #a9ff38;
+}
+span{
+    font-size: large;
+    color:#f2fcee ;
+}
+p{
+    font-size: medium;
+    color:#f2fcee ;
+}
+a{
+
+    font-size: medium;
+    text-decoration: none;
+}
+li{
+    list-style-type: none;
+}
+
+button{
+    margin: 5px;
+    display: flex;
+    cursor: pointer;
+    outline: none;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    width: 256px;
+    height: 54px;
+    padding: 1rem;
+    text-align: center;
+    font-size: large;
+    color: #f2fcee;
+    background-color: black;
+    border-radius: 10px;
+}
+button:hover{
+    outline: 2px solid #78e54d ; 
+    outline-offset: 5px; 
+}
+
