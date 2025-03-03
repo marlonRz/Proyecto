@@ -4,23 +4,44 @@
     width: 100%;
     min-height: 100vh;
 }
-nav{
-    display: flex; 
-    justify-content: center; 
-    gap: 20px; 
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+  }
+  
+  .nav-rigth {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .header-logo-biodigest {
+    width: 40px; 
+  }
+  
+  .nav-link {
+    text-decoration: none;
+    color: white;
+    font-size: 19px;
+  }
+  
+  .nav-link-company {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #84e33d; 
+    font-weight: bold;
+    font-size: 30px;
+  }
+  
 
-}
-.nav-link{
-    font-size: 21px;
-    padding: 10px;   
-    color: #ffffff;
-}
-.nav-link-company{
-    font-size: 28px;
-    padding: 5px; 
-    color: #a9ff38;  
-
-}
 
 
 .layout-content {

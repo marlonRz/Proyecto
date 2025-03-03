@@ -1,22 +1,32 @@
-import { useNavigate } from "react-router";
-import "./Home.css";
 import { useCallback } from "react";
+import useAuthStore from "../../stores/use-auth-store";
+import { useNavigate} from "react-router";
+import Button from "../../components/button/Button.jsx"
+import "./Home.css";
+
 
 const Home = () => {
+  const { loginGoogleWithPopUp} = useAuthStore();
   const navigate = useNavigate();
 
-  const handleClick = useCallback(() => {
-    navigate("/corazon",{
-      state: { userData: { displayName: "Fabian Valencia"}},
-    });
-  });
+  const handleLogin = useCallback(() => {
+    loginGoogleWithPopUp().then(() =>navigate("perfil")).cath(() =>navigate("/"))
+  }, [loginGoogleWithPopUp, navigate]);
 
   return (
     <>
-      <div className="home">
-        <h1>Inicio</h1>
-        <button onClick={()=> navigate("/corazon")}>Ver mas enfermedades</button>
+      <div>
+        <h2>Continua con Google</h2>
+        <Button
+          text="Iniciar sesión"
+          width="150px"
+          height="50px"
+          type="button"
+          title="Iniciar sesíón con Google"
+          onClick={handleLogin}
+        />
       </div>
+  
     </>
   );
 };
