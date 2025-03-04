@@ -4,7 +4,6 @@ import logo from "../../assets/img/biodigest_logo.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 
-
 const Header = () => {
   return (
     <header>
@@ -24,7 +23,7 @@ const Header = () => {
           <NavLink className="nav-link" to="quiz" end>
             Quiz
           </NavLink>
-          <NavLink className="nav-link" to="perfil" end>
+          <NavLink className="nav-link" to="inicio-sesion"  end>
             Perfil<FontAwesomeIcon className="icons" icon={faCircleUser} />
           </NavLink>
         </div>
