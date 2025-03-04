@@ -10,13 +10,13 @@ const Home = () => {
   const navigate = useNavigate();
 
   const handleLogin = useCallback(() => {
-    loginGoogleWithPopUp().then(() =>navigate("perfil")).cath(() =>navigate("/"))
+    loginGoogleWithPopUp().then(() =>navigate("/perfil")).catch(() =>navigate("/"))
   }, [loginGoogleWithPopUp, navigate]);
 
   return (
     <>
       <div>
-        <h2>Continua con Google</h2>
+        <h1>Continua con Google</h1>
         <Button
           text="Iniciar sesión"
           width="150px"

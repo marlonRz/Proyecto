@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
-import {auth} from "../firebase.config.js"
+import {auth} from "./firebase.config.js"
 
 const provider = new GoogleAuthProvider();
 
