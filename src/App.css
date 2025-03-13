@@ -1,3 +1,4 @@
+
 .information-start {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -14,6 +15,7 @@
     width: 100%;
     height: 100%;
     text-align: start;
+    
 }
 .information-start-h1{
     font-size: 50px ;
@@ -25,4 +27,12 @@
     font-size: 38px;
     color: #a9ff38;
     margin: 2px
+}
+.canvas-element3d {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    touch-action: none;
 }
