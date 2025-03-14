@@ -3,11 +3,14 @@ import "./Header.css";
 import logo from "../../assets/img/biodigest_logo.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
-
+import { motion } from "framer-motion" 
 
 const Header = () => {
   return (
-    <header>
+    <motion.header
+    initial={{ y: -30, opacity: 0 }}
+    animate={{ y: 10, opacity: 1 }}
+    transition={{ type: "tween", duration: 2 }}>
       <nav className="navbar">
         <div className="nav-left">
           <NavLink className="nav-link-company" to="/" end>
@@ -24,12 +27,12 @@ const Header = () => {
           <NavLink className="nav-link" to="quiz" end>
             Quiz
           </NavLink>
-          <NavLink className="nav-link" to="perfil" end>
+          <NavLink className="nav-link" to="inicio-sesion"  end>
             Perfil<FontAwesomeIcon className="icons" icon={faCircleUser} />
           </NavLink>
         </div>
       </nav>
-    </header>
+    </motion.header>
   );
 };
 

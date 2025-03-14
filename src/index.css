@@ -3,10 +3,11 @@
     --color-secondary: #f2fcee;
     --color-tertiary: #a9ff38;
     --color-neutral: #78e54d;
-    --color-neutral-low:#b5f19d;
-  }
-  
-html, body, #root {
+    --color-neutral-low: #b5f19d;
+}
+
+html,
+body {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -16,32 +17,43 @@ html, body, #root {
     font-optical-sizing: auto;
     font-weight: 300;
     font-style: normal;
-    background: #0c2005;
+    background: radial-gradient(125% 125% at 50% 10%, #000 40%, #a9ff38 100%);
+    background-size: cover;
+    background-position: bottom;
+
 }
 
-h1{
+
+h1 {
     font-size: xx-large;
     color: var(--color-tertiary);
 }
-span{
-    font-size: large;
-    color:var(--color-secondary) ;
-}
-p{
-    font-size: medium;
-    color:var(--color-secondary) ;
-}
-a{
 
+span {
+    font-size: large;
+    color: var(--color-secondary);
+
+}
+
+p {
+    font-size: medium;
+    color: var(--color-secondary);
+
+}
+
+a {
     font-size: medium;
     text-decoration: none;
+    color: var(--color-secondary);
+
 }
-li{
+
+li {
     list-style-type: none;
 }
 
 
-.icons{
+.icons {
     font-size: 20px;
     margin-left: 5px;
 }

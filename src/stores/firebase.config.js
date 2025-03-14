@@ -11,7 +11,7 @@ const firebaseConfig = {
   projectId: "sesion-3-a59b1",
   storageBucket: "sesion-3-a59b1.firebasestorage.app",
   messagingSenderId: "869735919349",
-  appId: "1:869735919349:web:2da84a6c6de35d63ae5fbc"
+  appId: "1:869735919349:web:f43f53d0acfe0859ae5fbc"
 };
 
 // Initialize Firebase
