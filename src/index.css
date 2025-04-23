@@ -5,7 +5,6 @@
     --color-neutral: #78e54d;
     --color-neutral-low: #b5f19d;
 }
-
 html,
 body {
     margin: 0;
@@ -20,39 +19,17 @@ body {
     background: radial-gradient(125% 125% at 50% 10%, #000 40%, #a9ff38 100%);
     background-size: cover;
     background-position: bottom;
-
 }
-
-
 h1 {
     font-size: xx-large;
     color: var(--color-tertiary);
 }
-
-span {
-    font-size: large;
-    color: var(--color-secondary);
-
-}
-
-p {
-    font-size: medium;
-    color: var(--color-secondary);
-
-}
-
-a {
-    font-size: medium;
-    text-decoration: none;
-    color: var(--color-secondary);
-
-}
-
+span,p,a{font-size:large;color:var(--color-secondary)}
+a{text-decoration:none}
+li{list-style-type:none}
 li {
     list-style-type: none;
 }
-
-
 .icons {
     font-size: 20px;
     margin-left: 5px;
