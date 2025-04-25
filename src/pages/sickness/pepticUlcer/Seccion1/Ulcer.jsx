@@ -1,7 +1,7 @@
 import './Ulcer.css';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
-import Stomach from '../../../models-3d/Stomach';
+import Stomach from '../../../../models-3d/Stomach';
 import { motion } from "framer-motion";
 
 function Ulcer() {
@@ -41,17 +41,17 @@ function Ulcer() {
             <OrbitControls />
           </Canvas>
         </motion.div>
-        <div className="navigation-section">
-        <div className="navigation-container">
-          <span className="diseases-text">Enfermedades</span>
-          <ul className="navigation-list">
-            <li className="navigation-item">¿QUÉ ES?</li>
-            <li className="navigation-item">SINTOMAS</li>
-            <li className="navigation-item">TRATAMIENTO</li>
-            <li className="navigation-item">PREVENCIÓN</li>
-          </ul>
+        <div className="separador">
+          <div className="navigation-container">
+            <span className="diseases-text">Enfermedades</span>
+            <ul className="navigation-list">
+              <li className="navigation-item">¿QUÉ ES?</li>
+              <li className="navigation-item">SINTOMAS</li>
+              <li className="navigation-item">TRATAMIENTO</li>
+              <li className="navigation-item">PREVENCIÓN</li>
+            </ul>
+          </div>
         </div>
-      </div>
       </div>
 
       

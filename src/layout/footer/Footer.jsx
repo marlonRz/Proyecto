@@ -1,14 +1,22 @@
+import { NavLink } from "react-router";
 import "./Footer.css";
-import { Link } from "react-router";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 
 const Footer = () => {
   return (
     <footer>
-      <ul>
-        <li>
-          <Link className="footer-low-preassure" to="/corazon/presion-alta">Presion alta</Link>
-        </li>
-      </ul>
+     <div className="navigation-section">
+          <div className="navigation-container">
+            <span className="diseases-text">copyright</span>
+            <ul className="navigation-list">
+              <li className="navigation-item">Contactos</li>
+              <li className="navigation-item">Contactos</li>
+              <li className="navigation-item">Contactos</li>
+              <li className="navigation-item">Contactos</li>
+            </ul>
+          </div>
+        </div>
     </footer>
   );
 };
