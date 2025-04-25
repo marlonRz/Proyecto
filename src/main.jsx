@@ -10,6 +10,7 @@ import Home from "./pages/home/Home.jsx";
 import Profile from "./pages/profile/Profile";
 import Ulcer from "./pages/sickness/pepticUlcer/Seccion1/Ulcer.jsx";
 import AppendixView from "./pages/sickness/AppendixView/AppendixView.jsx";
+import Diverticulosis from "./pages/sickness/diverticulosis/Diverticulosis.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
@@ -23,6 +24,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="*" element={<NotFound />} />
         <Route path="peritonitis" element={<Ulcer />} />
         <Route path="apendicitis" element={<AppendixView />} />
+        <Route path="diverticulosis" element={<Diverticulosis />} />
       </Routes>
     </Layout>
   </BrowserRouter>

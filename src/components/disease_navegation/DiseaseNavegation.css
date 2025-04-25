@@ -1,0 +1,28 @@
+.disease-navigation {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .disease-button {
+    background: linear-gradient(135deg, #00ff88, #a9ff38 );
+    color: #000;
+    font-weight: bold;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    font-size: 1rem;
+  }
+  
+  .disease-button:hover {
+    background: linear-gradient(135deg, #a9ff38 , #00ff88);
+  }
+  
+  .disease-button.active {
+    background: linear-gradient(135deg, #00ff88, #a9ff38 );
+    box-shadow: 0 0 15px #00ff88;
+  }
