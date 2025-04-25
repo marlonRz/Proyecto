@@ -5,7 +5,6 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import Skull3d from './models-3d/Skull';
 import { motion } from "framer-motion";
-import Ligths from './pages/ligths/Ligths';
 import Card from './components/card/Card';
 
 function App() {

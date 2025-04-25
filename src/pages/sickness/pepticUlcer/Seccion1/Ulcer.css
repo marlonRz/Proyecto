@@ -1,15 +1,29 @@
-footer{
-    background-color:black ;
+.information-start {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(6, 1fr); /* Aumentamos a 6 filas */
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    margin-bottom: 100px;
 }
-.footer-low-preassure{
-    color:#4bc11c ;
+    
+.section-start { 
+    grid-area: 1 / 1 / 6 / 4; 
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    text-align: start;
 }
 
-.navigation-section {
+.object-3d { 
+    grid-area: 1 / 4 / 6 / 6; 
+}
+
+.separador {
     grid-area: 7 / 1 / 8 / 6; /* Ocupa toda la nueva fila 6 */
-    background-color: #000000;
+    background-color: #1a771f;
     padding: 1rem;
-    border-radius: 8px;
+    border-radius: 5px;
     display: flex;
     align-items: center;
 }
