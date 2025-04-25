@@ -19,11 +19,11 @@
     grid-area: 1 / 4 / 6 / 6; 
 }
 
-.navigation-section {
+.separador {
     grid-area: 7 / 1 / 8 / 6; /* Ocupa toda la nueva fila 6 */
-    background-color: #115514;
+    background-color: #1a771f;
     padding: 1rem;
-    border-radius: 8px;
+    border-radius: 5px;
     display: flex;
     align-items: center;
 }

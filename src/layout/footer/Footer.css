@@ -5,3 +5,60 @@ footer{
     color:#4bc11c ;
 }
 
+.navigation-section {
+    grid-area: 7 / 1 / 8 / 6; /* Ocupa toda la nueva fila 6 */
+    background-color: #000000;
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.information-start-h1{
+    font-size: 50px;
+}
+.information-start-p{
+    font-size: 30px;
+}
+.nav-link-quiz{
+    font-size: 38px;
+    color: #a9ff38;
+    margin: 2px;
+}
+
+/* Estilos para la navegación */
+.navigation-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  
+.diseases-text {
+    color: white;
+    font-weight: bold;
+    font-size: 20px; /* Aumentado para coincidir con tu estilo */
+    margin-left: 20px;
+}
+  
+.navigation-list {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    gap: 2rem; /* Espacio entre elementos aumentado */
+}
+  
+.navigation-item {
+    color: white;
+    font-weight: bold;
+    font-size: 20px; /* Aumentado para coincidir con tu estilo */
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+  
+.navigation-item:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
