@@ -9,6 +9,7 @@ import Layout from "./layout/Layout.jsx";
 import Home from "./pages/home/Home.jsx";
 import Profile from "./pages/profile/Profile";
 import Ulcer from "./pages/sickness/pepticUlcer/Seccion1/Ulcer.jsx";
+import AppendixView from "./pages/sickness/AppendixView/AppendixView.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
@@ -21,6 +22,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="perfil" element={<Profile/>} />
         <Route path="*" element={<NotFound />} />
         <Route path="peritonitis" element={<Ulcer />} />
+        <Route path="apendicitis" element={<AppendixView />} />
       </Routes>
     </Layout>
   </BrowserRouter>
