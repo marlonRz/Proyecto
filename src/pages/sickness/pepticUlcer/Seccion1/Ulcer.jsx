@@ -3,33 +3,52 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import Stomach from '../../../../models-3d/Stomach';
 import { motion } from "framer-motion";
+import { useRef } from 'react';
 
 function Ulcer() {
+
+  const queEsRef = useRef(null);
+  const sintomasRef = useRef(null);
+  const tratamientoRef = useRef(null);
+  const prevencionRef = useRef(null);
+
+  const scrollToRef = (ref) => {
+    ref.current.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <div className='place-home'>
-      <div className='information-start'>
+    <div>
+      <div ref={queEsRef} className='information-container'>
         <motion.section
-          className='section-start'
+          className='section1'
           initial={{ x: "-100vw", opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ type: "ease", duration: 2 }}
         >
-          <h1 className='information-start-h1'>
+          <h1 className='information-title'>
             ÚLCERA PEPTICA
           </h1>
-          <h1 className='information-start-h1'>
+          <h2 className='information-subtitle'>
             ¿QUE ES LA ÚLCERA PEPTICA?
-          </h1>
-          <p className='information-start-p'>
+          </h2>
+          <p className='information-text'>
             La enfermedad de úlcera péptica, o PUD, es la formación de úlceras  (llagas abiertas) 
             en el revestimiento del estómago y la primera sección  del intestino delgado (duodeno). 
             Las úlceras pépticas en el estómago se  llaman úlceras gástricas, mientras que las del 
             duodeno se llaman úlceras duodenales.
           </p>
+
+          {/* Botones de navegación */}
+          <div className="navigation-buttons">
+            <button onClick={() => scrollToRef(queEsRef)} className="nav-button">¿QUÉ ES?</button>
+            <button onClick={() => scrollToRef(sintomasRef)} className="nav-button">SÍNTOMAS</button>
+            <button onClick={() => scrollToRef(tratamientoRef)} className="nav-button">TRATAMIENTO</button>
+            <button onClick={() => scrollToRef(prevencionRef)} className="nav-button">PREVENCIÓN</button>
+          </div>
         </motion.section>
 
         <motion.div
-          className="object-3d"
+          className="ulcera_seccion1"
           initial={{ x: "100vh", opacity: 0 }}
           animate={{ x: 0, opacity: 1.6 }}
           transition={{ type: "tween", duration: 1 }}
@@ -41,21 +60,9 @@ function Ulcer() {
             <OrbitControls />
           </Canvas>
         </motion.div>
-        <div className="separador">
-          <div className="navigation-container">
-            <span className="diseases-text">Enfermedades</span>
-            <ul className="navigation-list">
-              <li className="navigation-item">¿QUÉ ES?</li>
-              <li className="navigation-item">SINTOMAS</li>
-              <li className="navigation-item">TRATAMIENTO</li>
-              <li className="navigation-item">PREVENCIÓN</li>
-            </ul>
-          </div>
-        </div>
       </div>
 
-      
-    </div>
+    </div> 
   );
 }
 
