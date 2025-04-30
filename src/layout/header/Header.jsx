@@ -18,11 +18,14 @@ const Header = () => {
           </NavLink>
         </div>
         <div className="nav-rigth">
-          <NavLink className="nav-link" to="about-we" end>
-            Nosotros
+        <NavLink className="nav-link" to="/" end>
+            Inicio
           </NavLink>
           <NavLink className="nav-link" to="/" end>
-            Inicio
+            Enfermedades
+          </NavLink>
+          <NavLink className="nav-link" to="about-we" end>
+            Nosotros
           </NavLink>
           <NavLink className="nav-link" to="quiz" end>
             Quiz

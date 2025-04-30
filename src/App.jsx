@@ -6,8 +6,15 @@ import { OrbitControls } from '@react-three/drei';
 import Skull3d from './models-3d/Skull';
 import { motion } from "framer-motion";
 import Card from './components/card/Card';
+import { useRef } from 'react';
 
 function App() {
+  const enfermedades = useRef(null);
+  
+  const scrollToRef = (ref) => {
+    ref.current.scrollIntoView({ behavior: 'smooth' });
+  
+  };
   return (
     <div className='place-home'>
       <div className='information-start'>
@@ -26,7 +33,7 @@ function App() {
           <p className='information-start-p'>
             Observa tu anatomía con modelos 3D, aprende más sobre tus enfermedades y funcionamiento de las partes de tu cuerpo.
           </p>
-          <Button text="Ver más Enfermedades" width='250px' height='50px' />
+          <Button onClick={() => scrollToRef(enfermedades)} text="Ver más Enfermedades" width='250px' height='50px' />
         </motion.section>
 
         <motion.div
@@ -43,26 +50,29 @@ function App() {
           </Canvas>
         </motion.div>
       </div>
-      <motion.section
-        className='section-enfermedades'
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        viewport={{ once: true, amount: 0.5 }} 
-      >
-        <div>
-          <Card title={"Apendicitis"} route={"apendicitis"} image="/img/apendicitis.jpg" />
-        </div>
-        <div>
-          <Card title={"Enfermedad Crohn"} route={"crohn"} image="/img/crohn.jpg" />
-        </div>
-        <div>
-          <Card title={"Diverticulosis"} route={"diverticulosis"} image="/img/diverticulosis.jpg" />
-        </div>
-        <div>
-          <Card title={"Peritonitis"} route={"peritonitis"} image="/img/peritonitis.png" />
-        </div>
-      </motion.section>
+
+      <div ref={enfermedades}>
+        <motion.section
+          className='section-enfermedades'
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true, amount: 0.5 }} 
+        >
+          <div>
+            <Card title={"Apendicitis"} route={"apendicitis"} image="/img/apendicitis.jpg" />
+          </div>
+          <div>
+            <Card title={"Enfermedad Crohn"} route={"crohn"} image="/img/crohn.jpg" />
+          </div>
+          <div>
+            <Card title={"Diverticulosis"} route={"diverticulosis"} image="/img/diverticulosis.jpg" />
+          </div>
+          <div>
+            <Card title={"Peritonitis"} route={"peritonitis"} image="/img/peritonitis.png" />
+          </div>
+        </motion.section>
+      </div>
     </div>
   );
 }

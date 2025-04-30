@@ -1,7 +1,8 @@
 import './Ulcer.css';
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import Stomach from '../../../../models-3d/Stomach';
+import Floor from '../../../../models-3d/Floor'
 import { motion } from "framer-motion";
 import { useRef } from 'react';
 
@@ -53,10 +54,15 @@ function Ulcer() {
           animate={{ x: 0, opacity: 1.6 }}
           transition={{ type: "tween", duration: 1 }}
         >
-          <Canvas camera={{ position: [1.2, -1, 2], fov: 50 }} >
-            <ambientLight intensity={1.5} />
-            <directionalLight position={[5, 5, 10]} intensity={2} />
+          <Canvas camera={{ position: [1.2, 1, 2], fov: 50 }} shadows={true} >
+            <ambientLight intensity={1} />
+            <directionalLight 
+              position={[5, 5, 10]} 
+              intensity={2} 
+              castShadow={true}
+            />
             <Stomach position={[0, -1, 0]} scale={[7, 7, 7]} />
+            <Floor position={[0,0,0]} />
             <OrbitControls />
           </Canvas>
         </motion.div>
