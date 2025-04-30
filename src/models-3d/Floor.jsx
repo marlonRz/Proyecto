@@ -7,20 +7,16 @@ const Floor = ( ) =>{
         map: `${PATH}albedo.png`,
         normalMap:`${PATH}normal-ogl.png`,
         roughnessMap:`${PATH}roughness.png`,
-        displacementMap:`${PATH}height.png`,
+        //displacementMap:`${PATH}height.png`,
         aoMap:`${PATH}ao.png`,
         metalnessMap:`${PATH}metallic.png`,
 
         
     });
     return(
-        <mesh rotation-x={-Math.PI} position-y={-1}>
-            <planeGeometry args={[10, 10]} />
-            <meshStandardMaterial map={floorTexture.map}
-            normalMap={floorTexture.normalMap}
-            roughnessMap={floorTexture.roughnessMap} 
-            aoMap={floorTexture.aoMap}
-            metalness={floorTexture.metalnessMap}/>
+        <mesh rotation-x={-Math.PI/2} position={[0,-0.9,0]} receiveShadow={true}>
+            <circleGeometry args={[2, 32]} />
+            <meshStandardMaterial {...floorTexture} />
         </mesh>
     );
 }
