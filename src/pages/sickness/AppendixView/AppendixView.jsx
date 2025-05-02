@@ -1,7 +1,7 @@
 import React from 'react';
 import './AppendixView.css';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
+import { OrbitControls, Environment, ContactShadows } from '@react-three/drei';
 import Appendix3d from '../../../models-3d/appendix';
 import { motion } from 'framer-motion';
 
@@ -22,6 +22,14 @@ const Appendix = () => {
           pequeños cuerpos extraños— puede llenarse de pus y generar una infección. Si
           no se trata a tiempo, puede romperse y causar complicaciones.
         </p>
+
+        <div className="navigation-buttons">
+            <button onClick={() => scrollToRef(queEsRef)} className="nav-button">¿QUÉ ES?</button>
+            <button onClick={() => scrollToRef(sintomasRef)} className="nav-button">SÍNTOMAS</button>
+            <button onClick={() => scrollToRef(tratamientoRef)} className="nav-button">TRATAMIENTO</button>
+            <button onClick={() => scrollToRef(prevencionRef)} className="nav-button">PREVENCIÓN</button>
+          </div>
+
       </motion.section>
 
       <motion.div
@@ -30,10 +38,31 @@ const Appendix = () => {
         animate={{ x: 0, opacity: 1 }}
         transition={{ type: 'tween', duration: 1.5 }}
       >
-        <Canvas camera={{ position: [1.2, -1, 2], fov: 50 }}>
-          <ambientLight intensity={1.5} />
-          <directionalLight position={[5, 5, 10]} intensity={2} />
+        <Canvas
+          shadows
+          camera={{ position: [1.2, -1, 18], fov: 50 }}
+        >
+          <ambientLight intensity={0.5} />
+          <directionalLight
+            position={[5, 5, 10]}
+            intensity={1.5}
+            castShadow
+            shadow-mapSize-width={1024}
+            shadow-mapSize-height={1024}
+            shadow-camera-far={50}
+            shadow-camera-left={-10}
+            shadow-camera-right={10}
+            shadow-camera-top={10}
+            shadow-camera-bottom={-10}
+          />
           <Appendix3d position={[0, 1, 0]} scale={[7, 7, 7]} />
+
+          {/* Suelo para mostrar la sombra */}
+          <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.2, 0]} receiveShadow>
+            <planeGeometry args={[20, 20]} />
+            <shadowMaterial opacity={0.3} />
+          </mesh>
+
           <OrbitControls enablePan={false} />
         </Canvas>
       </motion.div>
