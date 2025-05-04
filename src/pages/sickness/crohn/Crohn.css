@@ -1,0 +1,41 @@
+.crohn-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    width: 100%;
+    height: 100%;
+  }
+  
+  .crohn-text {
+    grid-area: 1 / 1 / 6 / 4;
+    padding: 2rem;
+    color: var(--color-secondary);
+  }
+  
+  .crohn-title {
+    font-size: 50px;
+    margin-bottom: 1rem;
+    color: var(--color-tertiary);
+  }
+  
+  .crohn-subtitle {
+    font-size: 35px;
+    margin-bottom: 1rem;
+    color: var(--color-neutral);
+  }
+  
+  .crohn-desc {
+    font-size: 1.25rem;
+    line-height: 1.6;
+  }
+  
+  .crohn-3d {
+    grid-area: 1 / 4 / 6 / 6;
+    position: relative;
+  }
+  
+  .crohn-3d canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
