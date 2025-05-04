@@ -1,16 +1,18 @@
 import { useGLTF } from "@react-three/drei";
 import { useEffect } from "react";
 
-const Appendix3d = (props) => {
-   const Intestinomodel = useGLTF("img-3d/Intestino.glb");
+const Intestino3d = (props) => {
+  const { scene } = useGLTF("img-3d/Intestino.glb");
 
-   useEffect(() => {
-      console.log(Intestinomodel);
-   }, [Intestinomodel]);
+  useEffect(() => {
+    // Aplicar directamente al objeto cargado
+    scene.scale.set(7.2,7.2,7.2);
+    scene.position.set(0, -0.5, 0);
+  }, [scene]);
 
-   return (
-      <primitive object={Intestino.scene} {...props} castShadow receiveShadow />
-   );
+  return (
+    <primitive object={scene} castShadow receiveShadow {...props} />
+  );
 };
 
 export default Intestino3d;

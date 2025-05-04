@@ -2,7 +2,7 @@ import React from 'react';
 import './Crohn.css';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Environment, ContactShadows } from '@react-three/drei';
-import Appendix3d from '../../../models-3d/appendix';
+import Intestino3d from '../../../models-3d/Crohn';
 import { motion } from 'framer-motion';
 
 const Crohn = () => {
@@ -53,7 +53,7 @@ Se caracteriza por episodios de inflamación que pueden provocar úlceras, estre
             shadow-camera-top={10}
             shadow-camera-bottom={-10}
           />
-          <Appendix3d position={[0, 1, 0]} scale={[7, 7, 7]} />
+          <Intestino3d position={[0, 1, 0]} scale={[7, 7, 7]} />
 
           {/* Suelo para mostrar la sombra */}
           <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.2, 0]} receiveShadow>
