@@ -7,7 +7,7 @@ const Intestino3d = (props) => {
   useEffect(() => {
     // Aplicar directamente al objeto cargado
     scene.scale.set(7.2,7.2,7.2);
-    scene.position.set(0, -0.5, 0);
+    scene.position.set(-1, -0.5, 0);
   }, [scene]);
 
   return (
