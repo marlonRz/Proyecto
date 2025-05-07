@@ -22,7 +22,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="inicio-sesion" element={<Home />} />
         <Route path="perfil" element={<Profile/>} />
         <Route path="*" element={<NotFound />} />
-        <Route path="peritonitis" element={<Ulcer />} />
+        <Route path="ulcera" element={<Ulcer />} />
         <Route path="apendicitis" element={<AppendixView />} />
         <Route path="diverticulosis" element={<Diverticulosis />} />
       </Routes>
