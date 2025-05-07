@@ -69,7 +69,7 @@ function App() {
             <Card title={"Diverticulosis"} route={"diverticulosis"} image="/img/diverticulosis.jpg" />
           </div>
           <div>
-            <Card title={"Peritonitis"} route={"peritonitis"} image="/img/peritonitis.png" />
+            <Card title={"Ulcera Peptica"} route={"ulcera"} image="/img/peritonitis.png" />
           </div>
         </motion.section>
       </div>
