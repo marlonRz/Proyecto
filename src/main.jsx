@@ -12,6 +12,7 @@ import Ulcer from "./pages/sickness/pepticUlcer/Seccion1/Ulcer.jsx";
 import AppendixView from "./pages/sickness/AppendixView/AppendixView.jsx";
 import Diverticulosis from "./pages/sickness/diverticulosis/Diverticulosis.jsx";
 import Crohn from "./pages/sickness/crohn/Crohn.jsx";
+
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <Layout>
@@ -22,7 +23,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="inicio-sesion" element={<Home />} />
         <Route path="perfil" element={<Profile/>} />
         <Route path="*" element={<NotFound />} />
-        <Route path="peritonitis" element={<Ulcer />} />
+        <Route path="ulcera" element={<Ulcer />} />
         <Route path="apendicitis" element={<AppendixView />} />
         <Route path="diverticulosis" element={<Diverticulosis />} />
         <Route path="crohn" element={<Crohn />} />
