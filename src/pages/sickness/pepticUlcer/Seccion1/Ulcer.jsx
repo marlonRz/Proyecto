@@ -69,6 +69,7 @@ function Ulcer() {
         </motion.div>
       </div>
 
+
       <div ref={sintomasRef} className='information-container'>
         <motion.section
           className='section1'
