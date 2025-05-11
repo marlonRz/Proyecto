@@ -1,14 +1,22 @@
 import { useGLTF } from "@react-three/drei";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import { useFrame } from "@react-three/fiber";
 
 const Intestino3d = (props) => {
   const { scene } = useGLTF("img-3d/Intestino.glb");
+  const modelRef = useRef();
 
   useEffect(() => {
-    // Aplicar directamente al objeto cargado
-    scene.scale.set(7.2,7.2,7.2);
+    scene.scale.set(7.2, 7.2, 7.2);
     scene.position.set(-1, -0.5, 0);
+    modelRef.current = scene;
   }, [scene]);
+
+  useFrame(() => {
+    if (modelRef.current) {
+      modelRef.current.rotation.y += 0.005;
+    }
+  });
 
   return (
     <primitive object={scene} castShadow receiveShadow {...props} />
@@ -16,5 +24,4 @@ const Intestino3d = (props) => {
 };
 
 export default Intestino3d;
-
 useGLTF.preload("img-3d/Intestino.glb");
