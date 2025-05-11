@@ -3,8 +3,9 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import Diver from '../../../models-3d/Diver';
 import { motion } from "framer-motion";
-import React, { useState } from 'react';
+import { useState } from 'react';
 import DiseaseNavigation from '../../../components/disease_navegation/DiseaseNavegation';
+import Floor from "../../../models-3d/Floor";
 
 function Diverticulosis() {
     const [seccion, setSeccion] = useState('que-es');
@@ -57,27 +58,24 @@ function Diverticulosis() {
                     animate={{ x: 0, opacity: 1.6 }}
                     transition={{ type: "tween", duration: 1 }}
                 >
-                    <Canvas camera={{ position: [0, 0, 5], fov: 50 }} shadows>
+                    <Canvas camera={{ position: [-2.5, 0, 3], fov: 58 }} shadows>
                         <ambientLight intensity={2} /> 
                         <directionalLight
-                            position={[0, 0, 5]}
-                            intensity={5}
+                            position={[1, 5, 10]}
+                            intensity={7}
                             castShadow
-                            shadow-mapSize-width={2048}
-                            shadow-mapSize-height={2048}
+                            shadow-mapSize-width={124}
+                            shadow-mapSize-height={124}
                         />
                         <directionalLight
-                            position={[-5, 2, 5]}
-                            intensity={2}
+                            position={[-4, 3, 0]}
+                            intensity={3}
                         />
-                        <directionalLight
-                            position={[0, -5, -5]}
-                            intensity={0.9}
-                        />
-                        <pointLight position={[2, 2, 2]} intensity={0.9} />
+                        <pointLight position={[0, 0, 0]} intensity={0.9} />
+                        <Floor position={[0, 0, 0]} />
                         <Diver
-                            position={[0, 0, 0]}
-                            scale={[4, 4, 4]}
+                            position={[0, 0.5, 0]}
+                            scale={[3, 3, 3]}
                             rotation={[0, Math.PI, 0]}
                             castShadow
                             receiveShadow
