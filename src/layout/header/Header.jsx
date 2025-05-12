@@ -31,7 +31,7 @@ const Header = () => {
             Quiz
           </NavLink>
           <NavLink className="nav-link" to="inicio-sesion"  end>
-            Perfil<FontAwesomeIcon className="icons" icon={faCircleUser} />
+            <FontAwesomeIcon className="icons" icon={faCircleUser} />
           </NavLink>
         </div>
       </nav>
