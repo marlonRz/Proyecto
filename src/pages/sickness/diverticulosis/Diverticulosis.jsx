@@ -62,7 +62,7 @@ function Diverticulosis() {
           transition={{ type: "ease", duration: 2 }}
         >
           <h1 className='information-start-h1'>DIVERTICULOSIS</h1>
-          <h1 className='information-start-h1'>{contenido[seccion].titulo}</h1>
+          <h2 className='information-start-h2'>{contenido[seccion].titulo}</h2>
           <p className='information-start-p'>{contenido[seccion].descripcion}</p>
 
           <DiseaseNavigation setSeccion={setSeccion} activeSection={seccion} />
