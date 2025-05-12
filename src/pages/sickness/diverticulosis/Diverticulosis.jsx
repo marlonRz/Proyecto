@@ -52,6 +52,18 @@ function Diverticulosis() {
     }
   };
 
+    return (
+        <div className='place-home'>
+            <div className='information-start'>
+                <motion.section
+                    className='section-start'
+                    initial={{ x: "-100vw", opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ type: "ease", duration: 2 }}
+                >
+                    <h1 className='information-start-h1'>DIVERTICULOSIS</h1>
+                    <h2 className='information-start-h2'>{contenido[seccion].titulo}</h2>
+                    <p className='information-start-p'>{contenido[seccion].descripcion}</p>
   return (
     <div className='place-home'>
       <div className='information-start'>

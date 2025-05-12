@@ -33,8 +33,9 @@
     font-size: 50px;
 }
 .information-start-h2{
-    font-size: 30px;
-    color: #1a771f;
+    font-size: 35px;
+    margin-bottom: 1rem;
+    color: var(--color-neutral);
 }
 .information-start-p{
     font-size: 30px;
