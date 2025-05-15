@@ -22,7 +22,24 @@ function Ulcer() {
             duodeno se llaman úlceras duodenales.`,
         objeto3D: <Stomach position={[0, -1, 0]} scale={[7, 7, 7]} />,
         light: <directionalLight position={[5, 5, 10]} intensity={2} castShadow={true}/>,
-        html: <Title title={"Stomach"} />
+        html: <Title title={"Stomach"} />,
+        texto: <Html 
+                center 
+                position={[0,-1.5,0]}
+                transform // Aplica transformaciones 3D
+                distanceFactor={5} // Escala el tamaño según la distancia a la cámara
+                >
+                  <p> CLICK PARA AYUDA DE AUDIO </p>
+                  <div style={{ 
+                    background: "rgba(0,0,0,0.5)", 
+                    color: "white", 
+                    padding: "10px", 
+                    borderRadius: "10px",
+                    textAlign: "center",
+                    fontSize: "20px",
+                    fontFamily: "Arial",
+                  }}></div>
+                </Html>
     },
     'sintomas': {
         titulo: 'SINTOMAS',
@@ -41,21 +58,17 @@ function Ulcer() {
             </p>,
         objeto3D: <VomitPerson position={[0, -0.9, 0]} scale={[1, 1, 1]} />,
         light: <spotLight color={"red"} position={[4,1,-2]} distance={6} intensity={1000} angle={Math.PI / 14} penumbra={1} castShadow={true}/>,
-        html: <Title title={"Stomach"} />
+        
     },
     'tratamiento': {
         titulo: 'TRATAMIENTO',
         descripcion: `Prox.`,
-        objeto3D: <VomitPerson position={[0, -0.9, 0]} scale={[1, 1, 1]} />,
-        light: <spotLight color={"red"} position={[4,1,-2]} distance={6} intensity={1000} angle={Math.PI / 14} penumbra={1} castShadow={true}/>,
-        html: <Title title={"Stomach"} />
+        
     },
     'prevencion': {
         titulo: 'PREVENCIÓN DE LA DIVERTICULOSIS',
         descripcion: `Prox`,
-        objeto3D: <VomitPerson position={[0, -0.9, 0]} scale={[1, 1, 1]} />,
-        light: <spotLight color={"red"} position={[4,1,-2]} distance={6} intensity={1000} angle={Math.PI / 14} penumbra={1} castShadow={true}/>,
-        html: <Title title={"Stomach"} />
+
     }
   };
 
@@ -92,26 +105,10 @@ function Ulcer() {
             {contenido[seccion].light}
             {contenido[seccion].objeto3D}
             {contenido[seccion].html}
+            {contenido[seccion].texto}
             <Floor position={[0,0,0]} />
             <OrbitControls />
             <Staging />
-            <Html 
-            center 
-            position={[0,-1.5,0]}
-            transform // Aplica transformaciones 3D
-            distanceFactor={5} // Escala el tamaño según la distancia a la cámara
-            >
-              <p> CLICK PARA AYUDA DE AUDIO </p>
-              <div style={{ 
-               background: "rgba(0,0,0,0.5)", 
-               color: "white", 
-               padding: "10px", 
-               borderRadius: "10px",
-               textAlign: "center",
-               fontSize: "20px",
-               fontFamily: "Arial",
-            }}></div>
-            </Html>
           </Canvas>
         </motion.div>
       </div>

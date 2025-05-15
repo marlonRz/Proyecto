@@ -21,7 +21,7 @@ const Stomach = (props) => {
       // Detener después de 3 segundos (3000 ms)
       setTimeout(() => {
          audioRef.current.stop();
-      }, 22000);
+      }, 21000);
 
    }, [stomach3d, audioRef]);
 
