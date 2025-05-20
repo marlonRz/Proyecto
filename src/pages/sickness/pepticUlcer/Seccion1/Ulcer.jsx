@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Html } from '@react-three/drei';
 import Stomach from '../../../../models-3d/Stomach';
 import VomitPerson from '../../../../models-3d/VomitPerson';
+import Medicine from '../../../../models-3d/Medicine';
 import Floor from '../../../../models-3d/Floor'
 import { motion } from "framer-motion";
 import React, { useState } from 'react';
@@ -56,13 +57,21 @@ function Ulcer() {
             - Pérdida de peso inexplicable o cambios de apetito.<br/>
             - Fatiga y problemas  para respirar.
             </p>,
-        objeto3D: <VomitPerson position={[0, -0.9, 0]} scale={[1, 1, 1]} />,
-        light: <spotLight color={"red"} position={[4,1,-2]} distance={6} intensity={1000} angle={Math.PI / 14} penumbra={1} castShadow={true}/>,
+        objeto3D: <VomitPerson position={[0, -0.9, 0]} scale={[1.5, 1.5, 1.5]} />,
+        light: <spotLight color={"red"} position={[4,5,-2]} distance={20} intensity={1000} angle={Math.PI / 14} penumbra={1} castShadow={true}/>,
         
     },
     'tratamiento': {
         titulo: 'TRATAMIENTO',
-        descripcion: `Prox.`,
+        descripcion: <p>El tratamiento de las úlceras pépticas se basa en:<br/>
+        - Abordar la causa  subyacente y promover la cicatrización.<br/>
+        - Si la úlcera está asociada a la  bacteria Helicobacter pylori, se prescribe una combinación de  antibióticos para erradicar 
+        la  infección y reducir la acidez gástrica.<br/>
+        
+        En casos de complicaciones como sangrado o  perforación puede requerirse tratamiento endoscópico o cirugía.  
+        Si hay síntomas  graves como vómitos con sangre o heces negras, se debe buscar atención  médica inmediata..</p>,
+        objeto3D: <Medicine position={[0, -0.24, 0]} scale={[3, 3, 3]} />,
+        light: <pointLight color={"cyan"} position={[0,0,0]} intensity={10} castShadow={true}/>,
         
     },
     'prevencion': {
