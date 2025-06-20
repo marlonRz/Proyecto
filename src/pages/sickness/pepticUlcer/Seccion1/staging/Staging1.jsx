@@ -7,7 +7,7 @@ import {
   } from "@react-three/drei";
   import { Color } from "three";
   
-  const Staging = () => {
+  const Staging1 = () => {
     return (
       <>
         <Stars
@@ -34,4 +34,4 @@ import {
     );
   };
   
-  export default Staging;
+  export default Staging1;

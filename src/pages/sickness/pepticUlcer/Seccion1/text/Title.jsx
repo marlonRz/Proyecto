@@ -5,6 +5,7 @@ const Title = ({ title }) => {
   return (
     <Center position={[0, 1.5, 0]}>
       <Text3D
+        color={"orange"}
         font="fonts/alice.json"
         bevelEnabled
         bevelSize={0.01}

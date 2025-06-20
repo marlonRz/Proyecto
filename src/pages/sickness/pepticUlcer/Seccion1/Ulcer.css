@@ -1,6 +1,6 @@
 .information-container {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(5, 1fr);
     width: 100%;
     height: 100%;
@@ -28,7 +28,7 @@
 }
 
 .ulcera_seccion1 { 
-    grid-area: 1 / 4 / 6 / 6;
+    grid-area: 1 / 4 / 6 / 8;
     position: relative;
 }
 
@@ -69,4 +69,20 @@
   .nav-button:active {
     background: linear-gradient(135deg, #00ff88, #a9ff38 );
     box-shadow: 0 0 15px #00ff88;
+  }
+
+  /* En tu App.css */
+  .scroll-indicator {
+    text-align: center;
+    margin: 2rem 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .scroll-indicator:hover {
+    transform: scale(1.1);
+  }
+
+  .scroll-indicator svg {
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
   }
