@@ -1,27 +1,20 @@
 import "./Diverticulosis.css";
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
+import { OrbitControls, Html } from '@react-three/drei';
+
 import Diver from '../../../models-3d/Diver';
+import Sintomas_Diver from '../../../models-3d/Sintomas_Diver'
+import Treatment_Diver from "../../../models-3d/Treatment_Diver";
+
 import { motion } from "framer-motion";
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import DiseaseNavigation from '../../../components/disease_navegation/DiseaseNavegation';
 import Floor from "../../../models-3d/Floor";
+import Title from "./text/Title";
+import Staging1 from "./staging/Staging1";
+import Prevention_Diver from "../../../models-3d/Prevention_Diver";
 
 
-const AnimatedDiver = (props) => {
-  const diverRef = useRef();
-  
-  useFrame((state) => {
-    diverRef.current.rotation.y = Math.PI + Math.sin(state.clock.elapsedTime * 0.8) * 0.8
-  });
-
-  return (
-    <Diver
-      ref={diverRef}
-      {...props}
-    />
-  );
-};
 
 function Diverticulosis() {
   const [seccion, setSeccion] = useState('que-es');
@@ -31,7 +24,17 @@ function Diverticulosis() {
       titulo: '¿QUÉ ES LA DIVERTICULOSIS?',
       descripcion: `Los divertículos intestinales son pequeñas bolsas o sáculos que protruyen desde 
       la luz del intestino hacia el exterior de éste. El lugar donde se encuentran con mayor frecuencia
-       es en una zona del colon izquierdo llamada sigma.`
+       es en una zona del colon izquierdo llamada sigma.`,
+      objeto3D: <Diver position={[0, 0.6, 0]} scale={[3, 3, 3]} rotation={[0, Math.PI, 0]} receiveShadow />,
+      light: <directionalLight
+        position={[1, 5, 10]}
+        intensity={7}
+        castShadow
+        shadow-mapSize-width={124}
+        shadow-mapSize-height={124}
+      />,
+      html: <Title title={"Que es"} />,
+      staging: <Staging1 />
     },
     'sintomas': {
       titulo: 'SÍNTOMAS DE LA DIVERTICULOSIS',
@@ -39,16 +42,46 @@ function Diverticulosis() {
         Hinchazón,
         Estreñimiento o diarrea,
         Calambres o dolor en la parte inferior del abdomen y
-        Pequeñas cantidades de sangre en las heces o en el papel higiénico`
+        Pequeñas cantidades de sangre en las heces o en el papel higiénico`,
+      objeto3D: <Sintomas_Diver position={[0, 0.5, 0]} scale={[3, 3, 3]} rotation={[0, -1.5, 0]} receiveShadow />,
+      light: <directionalLight
+        position={[1, 5, 10]}
+        intensity={25}
+        castShadow
+        shadow-mapSize-width={200}
+        shadow-mapSize-height={200}
+      />,
+      html: <Title title={"Sintomas"} />,
+      staging: <Staging1 />
     },
     'tratamiento': {
       titulo: 'TRATAMIENTO DE LA DIVERTICULOSIS',
       descripcion: `El tratamiento puede incluir una dieta rica en fibra, líquidos y, en algunos casos,
-      antibióticos si hay infección.`
+      antibióticos si hay infección.`,
+      objeto3D: <Treatment_Diver position={[-0.8, -0.5, 1]} scale={[3, 3, 3]} rotation={[0, -1.5, 0]} receiveShadow />,
+      light: <directionalLight
+        position={[0, 0, 0]}
+        intensity={0}
+        castShadow
+        shadow-mapSize-width={100}
+        shadow-mapSize-height={100}
+      />,
+      html: <Title title={"Tratamiento"} />,
+      staging: <Staging1 />
     },
     'prevencion': {
       titulo: 'PREVENCIÓN DE LA DIVERTICULOSIS',
-      descripcion: `Mantener una dieta alta en fibra, hidratarse adecuadamente y hacer ejercicio regularmente.`
+      descripcion: `Mantener una dieta alta en fibra, hidratarse adecuadamente y hacer ejercicio regularmente.`,
+      objeto3D: <Prevention_Diver position={[-1, 0.3, 1.5]} scale={[0.6, 0.6, 0.6]} rotation={[0, -1.1, 0]} receiveShadow />,
+      light: <directionalLight
+        position={[0, 0, 0]}
+        intensity={0}
+        castShadow
+        shadow-mapSize-width={100}
+        shadow-mapSize-height={100}
+      />,
+      html: <Title title={"Prevencion"} />,
+      staging: <Staging1 />
     }
   };
 
@@ -70,32 +103,19 @@ function Diverticulosis() {
 
         <motion.div
           className="object-3d"
-          initial={{ x: "100vh", opacity: 0 }}
+          initial={{ x: "80vh", opacity: 0 }}
           animate={{ x: 0, opacity: 1.6 }}
           transition={{ type: "tween", duration: 1 }}
         >
-          <Canvas camera={{ position: [-2.5, 0, 3], fov: 58 }} shadows>
-            <ambientLight intensity={2} /> 
-            <directionalLight
-              position={[1, 5, 10]}
-              intensity={7}
-              castShadow
-              shadow-mapSize-width={124}
-              shadow-mapSize-height={124}
-            />
-            <directionalLight
-              position={[-4, 3, 0]}
-              intensity={3}
-            />
-            <pointLight position={[0, 0, 0]} intensity={0.9} />
+          <Canvas camera={{ position: [-2.5, 0, 3.5], fov: 60 }} shadows>
+            <ambientLight intensity={2} />
+            <pointLight position={[0, 0, 0]} intensity={15} />
             <Floor position={[0, 0, 0]} />
-            <AnimatedDiver
-              position={[0, 0.5, 0]}
-              scale={[3, 3, 3]}
-              rotation={[0, Math.PI, 0]}
-              castShadow
-              receiveShadow
-            />
+            {contenido[seccion].light}
+            {contenido[seccion].objeto3D}
+            {contenido[seccion].html}
+            {contenido[seccion].texto}
+            {contenido[seccion].staging}
             <OrbitControls />
           </Canvas>
         </motion.div>

@@ -17,7 +17,7 @@ const DiseaseNavigation = ({ setSeccion, activeSection }) => {
       {filteredSections.map((section) => (
         <motion.button
           key={section.id}
-          className="disease-button" // Eliminamos la clase 'active' ya que no habrá sección activa
+          className="disease-button"
           onClick={() => setSeccion(section.id)}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
