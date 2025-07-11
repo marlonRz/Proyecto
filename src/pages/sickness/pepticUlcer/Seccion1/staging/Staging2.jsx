@@ -1,4 +1,4 @@
-import { Environment,Sky, } from "@react-three/drei";
+import { Environment,Sky,Sparkles } from "@react-three/drei";
 
 const Staging2 = () => {
   return (
@@ -20,7 +20,15 @@ const Staging2 = () => {
 //      }}
 //      background
 //    />
-    <Sky/>
+    <Sparkles
+          count={256} // Number of particles (default: 100)
+          speed={1.5} // Speed of particles (default: 1)
+          opacity={1} // Opacity of particles (default: 1)
+          color={"yellow"} // Color of particles (default: 100)
+          size={4} // Size of particles (default: randomized between 0 and 1)
+          scale={[10, 10, 10]} // The space the particles occupy (default: 1)
+          noise={1} // Movement factor (default: 1)
+    />
   );
 };
 

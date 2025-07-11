@@ -52,16 +52,13 @@ function Ulcer() {
         titulo: 'SINTOMAS',
         descripcion: [
       "Los síntomas más comunes incluyen:",
-      "- Dolor abdominal.",
-      "- Sensación de plenitud o hinchazón.",
-      "- Indigestión.",
-      "- Acidez estomacal y náuseas.",
-      "",
+      "Dolor abdominal, Sensación de plenitud o hinchazón,",
+      "Indigestión, Acidez estomacal y náuseas.",
+      "-",
       "Los síntomas menos comunes y graves:",
-      "- Vómitos (incluyendo vómitos de sangre).",
-      "- Heces oscuras y sanguinolentas.",
-      "- Pérdida de peso inexplicable.",
-      "- Fatiga y problemas para respirar." ],
+      "Vómitos (incluyendo vómitos de sangre).",
+      "Heces oscuras y sanguinolentas, Pérdida de peso inexplicable,",
+      "Fatiga y problemas para respirar." ],
         objeto3D: <VomitPerson position={[0, -0.9, 0]} scale={[1, 1, 1]} />,
         light: <spotLight color={"red"} position={[4,5,-2]} distance={20} intensity={1000} angle={Math.PI / 14} penumbra={1} castShadow={true}/>,
         staging: <Staging2/>
@@ -70,8 +67,10 @@ function Ulcer() {
     'tratamiento': {
         titulo: 'TRATAMIENTO',
         descripcion: ['El tratamiento de las úlceras pépticas se basa en:',
-        '- Abordar la causa  subyacente y promover la cicatrización.',
-        '- Si la úlcera está asociada a la  bacteria Helicobacter pylori, se prescribe una combinación de  antibióticos para erradicar la  infección y reducir la acidez gástrica.',
+        '-',
+        'Abordar la causa  subyacente y promover la cicatrización.',
+        'Si la úlcera está asociada a la  bacteria Helicobacter pylori, se prescribe antibióticos para erradicar la infección y reducir la acidez gástrica.',
+        '-',
         'En casos de complicaciones como sangrado o  perforación puede requerirse tratamiento endoscópico o cirugía.',  
         'Si hay síntomas  graves como vómitos con sangre o heces negras, se debe buscar atención  médica inmediata.'],
         objeto3D: <Medicine position={[0, -0.24, 0]} scale={[3, 3, 3]} />,
@@ -80,7 +79,7 @@ function Ulcer() {
     },
     'prevencion': {
         titulo: 'PREVENCIÓN',
-        descripcion: `Prox`,
+        descripcion: [`Prox`],
 
     }
   };
