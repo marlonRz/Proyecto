@@ -13,6 +13,7 @@ import Floor from "../../../models-3d/Floor";
 import Title from "./text/Title";
 import Staging1 from "./staging/Staging1";
 import Prevention_Diver from "../../../models-3d/Prevention_Diver";
+import Interactive from "../../../components/Events/Diverticulosis/Interactive";
 
 
 
@@ -25,7 +26,13 @@ function Diverticulosis() {
       descripcion: `Los divertículos intestinales son pequeñas bolsas o sáculos que protruyen desde 
       la luz del intestino hacia el exterior de éste. El lugar donde se encuentran con mayor frecuencia
        es en una zona del colon izquierdo llamada sigma.`,
-      objeto3D: <Diver position={[0, 0.6, 0]} scale={[3, 3, 3]} rotation={[0, Math.PI, 0]} receiveShadow />,
+      objeto3D: <Interactive
+        position={[0, 0.6, 0]}
+        scale={[3, 3, 3]}
+        rotation={[0, Math.PI, 0]}
+      >
+        <Diver />
+      </Interactive>,
       light: <directionalLight
         position={[1, 5, 10]}
         intensity={7}
@@ -43,7 +50,14 @@ function Diverticulosis() {
         Estreñimiento o diarrea,
         Calambres o dolor en la parte inferior del abdomen y
         Pequeñas cantidades de sangre en las heces o en el papel higiénico`,
-      objeto3D: <Sintomas_Diver position={[0, 0.5, 0]} scale={[3, 3, 3]} rotation={[0, -1.5, 0]} receiveShadow />,
+      objeto3D:
+        <Interactive
+          position={[0, 0.6, 0]}
+          scale={[3, 3, 3]}
+          rotation={[0, Math.PI, 0]}
+        >
+          <Sintomas_Diver/>
+        </Interactive>,
       light: <directionalLight
         position={[1, 5, 10]}
         intensity={25}
@@ -58,7 +72,13 @@ function Diverticulosis() {
       titulo: 'TRATAMIENTO DE LA DIVERTICULOSIS',
       descripcion: `El tratamiento puede incluir una dieta rica en fibra, líquidos y, en algunos casos,
       antibióticos si hay infección.`,
-      objeto3D: <Treatment_Diver position={[-0.8, -0.5, 1]} scale={[3, 3, 3]} rotation={[0, -1.5, 0]} receiveShadow />,
+      objeto3D:<Interactive
+          position={[-0.8, -0.5, 1]} 
+          scale={[3, 3, 3]}
+          rotation={[0, -1, 0]}
+        >
+          <Treatment_Diver />
+        </Interactive>,
       light: <directionalLight
         position={[0, 0, 0]}
         intensity={0}
@@ -72,7 +92,8 @@ function Diverticulosis() {
     'prevencion': {
       titulo: 'PREVENCIÓN DE LA DIVERTICULOSIS',
       descripcion: `Mantener una dieta alta en fibra, hidratarse adecuadamente y hacer ejercicio regularmente.`,
-      objeto3D: <Prevention_Diver position={[-1, 0.3, 1.5]} scale={[0.6, 0.6, 0.6]} rotation={[0, -1.1, 0]} receiveShadow />,
+      objeto3D: 
+          <Prevention_Diver position={[0,0.5,0]} scale={[1.2, 1.2, 1.2]}/>,
       light: <directionalLight
         position={[0, 0, 0]}
         intensity={0}
@@ -107,7 +128,10 @@ function Diverticulosis() {
           animate={{ x: 0, opacity: 1.6 }}
           transition={{ type: "tween", duration: 1 }}
         >
-          <Canvas camera={{ position: [-2.5, 0, 3.5], fov: 60 }} shadows>
+          <Canvas camera={{ position: [-2.5, 0, 3.5], fov: 60 }} shadows onCreated={({ gl }) => {
+            gl.domElement.tabIndex = 0;
+            gl.domElement.focus();
+          }}>
             <ambientLight intensity={2} />
             <pointLight position={[0, 0, 0]} intensity={15} />
             <Floor position={[0, 0, 0]} />
