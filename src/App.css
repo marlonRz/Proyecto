@@ -1,21 +1,23 @@
 
-.information-start {
+.information-start-principañ {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    position: relative;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     margin-bottom: 100px;
     }
     
-    .section-start { grid-area: 1 / 1 / 6 / 4; }
-    .object-3d { grid-area: 1 / 4 / 6 / 6; }
+    .section-start-principal { grid-area: 1 / 1 / 6 / 4; } 
+    .object-3d-principal { grid-area: 1 / 4 / 6 / 7; } 
 
-.section-start{
+.section-start-principal{
     padding: 10px;
     width: 100%;
     height: 100%;
     text-align: start;
+    text-align: center;
     
 }
 .information-start-h1{
@@ -43,6 +45,6 @@
     width: 100%;
     height: 100vh; 
     padding: 16px;
-    margin: 10px;
+
   }
   

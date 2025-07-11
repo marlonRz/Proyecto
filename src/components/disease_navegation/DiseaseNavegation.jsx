@@ -1,4 +1,4 @@
-import "./DiseaseNavegation.css"
+import "./DiseaseNavegation.css";
 import { motion } from "framer-motion";
 
 const sections = [
@@ -9,12 +9,15 @@ const sections = [
 ];
 
 const DiseaseNavigation = ({ setSeccion, activeSection }) => {
+  // Filtrar las secciones para excluir la activa
+  const filteredSections = sections.filter(section => section.id !== activeSection);
+
   return (
     <div className="disease-navigation">
-      {sections.map((section) => (
+      {filteredSections.map((section) => (
         <motion.button
           key={section.id}
-          className={`disease-button ${activeSection === section.id ? 'active' : ''}`}
+          className="disease-button"
           onClick={() => setSeccion(section.id)}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}

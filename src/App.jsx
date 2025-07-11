@@ -7,26 +7,27 @@ import Skull3d from './models-3d/Skull';
 import { motion } from "framer-motion";
 import Card from './components/card/Card';
 import { useRef } from 'react';
+import { FaArrowDown } from 'react-icons/fa'; // Importamos un ícono de flecha
 
 function App() {
   const enfermedades = useRef(null);
   
   const scrollToRef = (ref) => {
     ref.current.scrollIntoView({ behavior: 'smooth' });
-  
   };
+
   return (
     <div className='place-home'>
-      <div className='information-start'>
+      <div className='information-start-principañ'>
         <motion.section
-          className='section-start'
+          className='section-start-principal'
           initial={{ x: "-100vw", opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ type: "ease", duration: 2 }}
         >
-          <h1 className='information-start-h1'>
+          <p className='information-start-h1'>
             GUIATE CON NOSOTROS, TU SALUD EN UN SOLO LUGAR.
-          </h1>
+          </p>
           <p className='information-start-p'>
             Comienza ahora con un <NavLink className="nav-link-quiz" to="quiz" end>Quiz</NavLink> interactivo fortalece tus conocimientos.
           </p>
@@ -37,7 +38,7 @@ function App() {
         </motion.section>
 
         <motion.div
-          className="object-3d"
+          className="object-3d-principal"
           initial={{ x: "100vh", opacity: 0 }}
           animate={{ x: 0, opacity: 1.6 }}
           transition={{ type: "tween", duration: 1 }}
@@ -50,6 +51,30 @@ function App() {
           </Canvas>
         </motion.div>
       </div>
+
+      {/* Flecha animada */}
+      <motion.div 
+        className="scroll-indicator"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ 
+          opacity: 1, 
+          y: 0,
+          transition: { 
+            repeat: Infinity, 
+            repeatType: "reverse",
+            duration: 1.5
+          } 
+        }}
+        onClick={() => scrollToRef(enfermedades)}
+        style={{
+          cursor: 'pointer',
+          display: 'flex',
+          justifyContent: 'center',
+          margin: '40px 0'
+        }}
+      >
+        <FaArrowDown size={32} color="#2a9d8f" />
+      </motion.div>
 
       <div ref={enfermedades}>
         <motion.section
