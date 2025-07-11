@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./AppendixView.css";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls, Environment, Stars, Html } from "@react-three/drei";
 import Appendix3d from "../../../models-3d/appendix";
 import Sintoma1Appendix3d from "../../../models-3d/Sintoma1Appendix";
 import Sintoma2Appendix3d from "../../../models-3d/Sintoma2Appendix";
@@ -31,6 +31,19 @@ const sintomas = [
 const Appendix = () => {
   const [section, setSection] = useState("main");
   const [sintomaIndex, setSintomaIndex] = useState(0);
+  const [color, setColor] = useState("white"); // Para evento de mouse
+  const modelRef = useRef();
+
+  // Evento de teclado: cambiar color con la tecla "c"
+  React.useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "c") {
+        setColor(color === "white" ? "orange" : "white");
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [color]);
 
   const handleSiguiente = () => {
     if (sintomaIndex < sintomas.length - 1) {
@@ -44,6 +57,11 @@ const Appendix = () => {
   const handleSintomas = () => {
     setSection("sintomas");
     setSintomaIndex(0);
+  };
+
+  // Evento de mouse: click para cambiar color
+  const handleModelClick = () => {
+    setColor(color === "white" ? "orange" : "white");
   };
 
   return (
@@ -85,7 +103,9 @@ const Appendix = () => {
             transition={{ type: "tween", duration: 1.5 }}
           >
             <Canvas shadows camera={{ position: [1.2, -1, 18], fov: 50 }}>
+              {/* Iluminación 1: Luz ambiental */}
               <ambientLight intensity={0.5} />
+              {/* Iluminación 2: Luz direccional suave */}
               <directionalLight
                 position={[5, 5, 10]}
                 intensity={1.5}
@@ -100,7 +120,7 @@ const Appendix = () => {
               />
               <Appendix3d position={[0, 1, 0]} scale={[7, 7, 7]} />
 
-              {/* Suelo para mostrar la sombra */}
+              {/* Sombra suave */}
               <mesh
                 rotation={[-Math.PI / 2, 0, 0]}
                 position={[0, -0.2, 0]}
@@ -162,10 +182,12 @@ const Appendix = () => {
             transition={{ type: "tween", duration: 1.5 }}
           >
             <Canvas shadows camera={{ position: [1.2, -1, 18], fov: 50 }}>
-              <ambientLight intensity={1.5} />
+              {/* Iluminación 1: Luz ambiental */}
+              <ambientLight intensity={0.7} />
+              {/* Iluminación 2: Luz direccional dura */}
               <directionalLight
-                position={[5, 5, 10]}
-                intensity={4}
+                position={[-5, 10, 10]}
+                intensity={3}
                 castShadow
                 shadow-mapSize-width={2048}
                 shadow-mapSize-height={2048}
@@ -175,10 +197,47 @@ const Appendix = () => {
                 shadow-camera-top={10}
                 shadow-camera-bottom={-10}
               />
+              {/* Sombra dura */}
+              <mesh
+                rotation={[-Math.PI / 2, 0, 0]}
+                position={[0, -0.2, 0]}
+                receiveShadow
+              >
+                <planeGeometry args={[20, 20]} />
+                <shadowMaterial opacity={0.6} />
+              </mesh>
+
+              {/* Evento de mouse: click para cambiar color */}
               {React.createElement(sintomas[sintomaIndex].Modelo, {
                 position: [0, 0, 0],
                 scale: [7, 7, 7],
+                ref: modelRef,
+                onClick: handleModelClick,
+                color: color,
               })}
+
+              {/* Elemento HTML 3D */}
+              <Html position={[0, 2, 0]}>
+                <h1
+                  style={{
+                    color: "--color - tertiary",
+                    background: "rgba(255,255,255,0.85)",
+                    padding: "0.5rem 1.5rem",
+                    borderRadius: "12px",
+                    fontSize: "2rem",
+                    fontWeight: "bold",
+                    boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
+                    margin: 0,
+                  }}
+                >
+                  SÍNTOMAS
+                </h1>
+              </Html>
+
+              {/* Puesta en escena: estrellas y environment */}
+              <Stars radius={50} depth={50} count={2000} factor={4} />
+              <Environment preset="sunset" />
+
               <OrbitControls enablePan={false} />
             </Canvas>
           </motion.div>
