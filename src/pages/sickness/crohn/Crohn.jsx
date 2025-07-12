@@ -1,7 +1,7 @@
 import './Crohn.css';
 import React, { useState } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Html } from '@react-three/drei';
+import { OrbitControls, Html, Environment, KeyboardControls } from '@react-three/drei';
 
 import Intestino3d from '../../../models-3d/Crohn';
 import Staging1 from "./staging/Staging1";
@@ -14,7 +14,6 @@ import { motion } from "framer-motion";
 import Floor from '../../../models-3d/Floor';
 import DiseaseNavigation from '../../../components/disease_navegation/DiseaseNavegation';
 
-
 function Crohn() {
   const [seccion, setSeccion] = useState('que-es');
 
@@ -24,9 +23,26 @@ function Crohn() {
         descripcion: [`La enfermedad de Crohn es una enfermedad inflamatoria intestinal (EII) crónica que puede afectar cualquier parte del tracto digestivo, desde la boca hasta el ano, aunque suele presentarse con mayor frecuencia en el intestino delgado y el colon.
 Se caracteriza por episodios de inflamación que pueden provocar úlceras, estrechamiento del intestino (estenosis) y otros problemas digestivos. No tiene cura, pero los síntomas pueden manejarse con tratamiento.`],
         objeto3D: <Intestino3d position={[0, -1, 0]} scale={[7, 7, 7]} />,
-        light: <directionalLight position={[5, 5, 10]} intensity={2} castShadow={true}/>,
+        light: <directionalLight position={[5, 5, 10]} intensity={2} castShadow={true} />,
         html: <Title title={"Intestino"} />,
-        texto: null,
+        texto: (
+          <Html center position={[0, 1.5, 0]} transform distanceFactor={5}>
+            <button
+              style={{
+                background: 'rgba(0, 0, 0, 0.6)',
+                color: 'white',
+                padding: '10px 15px',
+                border: 'none',
+                borderRadius: '10px',
+                cursor: 'pointer',
+                fontSize: '16px'
+              }}
+              onClick={() => alert("Botón 3D clickeado")}
+            >
+              Botón de prueba
+            </button>
+          </Html>
+        ),
         staging: <Staging1/>
     },
     'sintomas': {
@@ -34,19 +50,16 @@ Se caracteriza por episodios de inflamación que pueden provocar úlceras, estre
         descripcion: [`Los síntomas más comunes incluyen: 
 Dolor abdominal (tipo cólico), Diarrea persistente (a veces con sangre), Fatiga y debilidad, Pérdida de peso sin razón aparente, Fiebre ocasional, Náuseas o vómitos, Aftas en la boca, Inflamación en las articulaciones, piel u ojos (síntomas extraintestinales)`],
         objeto3D: <SintomasCrohn position={[0, -0.9, 0]} scale={[1, 1, 1]} />,
-        light: <spotLight color={"red"} position={[4,5,-2]} distance={20} intensity={1000} angle={Math.PI / 14} penumbra={1} castShadow={true}/>,
+        light: <spotLight color={"red"} position={[4,5,-2]} distance={20} intensity={1000} angle={Math.PI / 14} penumbra={1} castShadow={true} />,
         staging: <Staging2/>
-        
     },
     'tratamiento': {
         titulo: 'TRATAMIENTO',
         descripcion: ['Medicamentos antiinflamatorios (como mesalazina o corticoides), inmunosupresores, terapias biológicas, cirugía en casos severos'],
-            
     },
     'prevencion': {
         titulo: 'PREVENCIÓN',
         descripcion: [`No hay una forma conocida de prevenirla completamente, pero una dieta equilibrada, manejo del estrés y dejar de fumar ayudan a reducir los brotes.`],
-
     }
   };
 
@@ -78,16 +91,19 @@ Dolor abdominal (tipo cólico), Diarrea persistente (a veces con sangre), Fatiga
           animate={{ x: 0, opacity: 1.6 }}
           transition={{ type: "tween", duration: 1 }}
         >
-          <Canvas camera={{ position: [1.2, 1, 5], fov: 50 }} shadows={true} >
-            <ambientLight intensity={1} />
-            {contenido[seccion].light}
-            {contenido[seccion].objeto3D}
-            {contenido[seccion].html}
-            {contenido[seccion].texto}
-            {contenido[seccion].staging}
-            <Floor position={[0,0,0]} />
-            <OrbitControls />
-          </Canvas>
+          <KeyboardControls map={[{ name: 'rotate', keys: ['ArrowLeft', 'ArrowRight'] }]}>
+            <Canvas camera={{ position: [1.2, 1, 5], fov: 50 }} shadows={true}>
+              <ambientLight intensity={1} />
+              {contenido[seccion].light}
+              {contenido[seccion].objeto3D}
+              {contenido[seccion].html}
+              {contenido[seccion].texto}
+              {contenido[seccion].staging}
+              <Floor position={[0, 0, 0]} />
+              <OrbitControls />
+              <Environment preset="sunset" /> {/* Sin background visible */}
+            </Canvas>
+          </KeyboardControls>
         </motion.div>
       </div>
     </div> 

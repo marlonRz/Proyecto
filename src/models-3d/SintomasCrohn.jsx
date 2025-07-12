@@ -8,7 +8,7 @@ const SintomasCrohn = (props) => {
 
    useEffect(() => {
       scene.scale.set(1.2, 1.2, 1.2);  // Tamaño (escala)
-      scene.position.set(0, 0.3, 0);  // Posición [x, y, z]
+      scene.position.set(0, 0.3, 0);   // Posición [x, y, z]
    }, [scene]);
 
    useFrame((state, delta) => {
@@ -23,6 +23,8 @@ const SintomasCrohn = (props) => {
          object={scene}
          {...props}
          dispose={null}
+         onClick={() => alert('Haz hecho clic en el modelo')}
+         onPointerEnter={() => console.log('Puntero sobre el modelo')}
       />
    );
 };
