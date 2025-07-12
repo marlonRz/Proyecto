@@ -7,8 +7,8 @@ const Intestino3d = (props) => {
   const modelRef = useRef();
 
   useEffect(() => {
-    scene.scale.set(7.2, 7.2, 7.2);
-    scene.position.set(-1, -0.5, 0);
+    scene.scale.set(1.2, 1.2, 1.2);
+    scene.position.set(0, 0.3, 0);
     modelRef.current = scene;
   }, [scene]);
 
