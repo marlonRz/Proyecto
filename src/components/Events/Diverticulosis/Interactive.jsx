@@ -31,6 +31,14 @@ const InteractiveDiver = ({ children, ...props }) => {
       if (document.activeElement === gl.domElement) {
         if (event.key === "ArrowLeft") setRotationDirection(-1);
         if (event.key === "ArrowRight") setRotationDirection(1);
+        if (event.key === "r") {
+          // reset rotación y escala
+          if (ref.current) {
+            ref.current.rotation.set(0, 0, 0);
+            ref.current.scale.set(3, 3, 3);
+            setClicked(false);
+          }
+        }
       }
     };
 
@@ -54,11 +62,21 @@ const InteractiveDiver = ({ children, ...props }) => {
     }
   });
 
+  // Evento de doble clic (reset manual)
+  const handleDoubleClick = () => {
+    if (ref.current) {
+      ref.current.rotation.set(0, 0, 0);
+      ref.current.scale.set(3, 3, 3);
+      setClicked(false);
+    }
+  };
+
   return (
     <group
       ref={ref}
       {...props}
       onClick={() => setClicked(!clicked)}
+      onDoubleClick={handleDoubleClick}
       onPointerOver={() => setHovered(true)}
       onPointerOut={() => setHovered(false)}
     >
@@ -68,3 +86,4 @@ const InteractiveDiver = ({ children, ...props }) => {
 };
 
 export default InteractiveDiver;
+

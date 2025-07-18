@@ -20,7 +20,7 @@ import {
           speed={1} // Speed at which the stars move (if animated)
         />
 
-        {/*<Sparkles
+        <Sparkles
           count={256} // Number of particles (default: 100)
           speed={1.5} // Speed of particles (default: 1)
           opacity={1} // Opacity of particles (default: 1)
@@ -28,7 +28,7 @@ import {
           size={4} // Size of particles (default: randomized between 0 and 1)
           scale={[10, 10, 10]} // The space the particles occupy (default: 1)
           noise={1} // Movement factor (default: 1)
-        />*/}
+        />
 
       </>
     );
