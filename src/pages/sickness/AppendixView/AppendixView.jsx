@@ -1,7 +1,16 @@
-import React, { useState, useRef } from "react";
+// src/views/AppendixView/Appendix.jsx
+import React, { useState, useRef, useEffect } from "react";
 import "./AppendixView.css";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Environment, Stars, Html } from "@react-three/drei";
+import {
+  OrbitControls,
+  Environment,
+  Stars,
+  Sky,
+  Sparkles,
+  Html,
+  Text,
+} from "@react-three/drei";
 import Appendix3d from "../../../models-3d/appendix";
 import Sintoma1Appendix3d from "../../../models-3d/Sintoma1Appendix";
 import Sintoma2Appendix3d from "../../../models-3d/Sintoma2Appendix";
@@ -31,23 +40,38 @@ const sintomas = [
 const Appendix = () => {
   const [section, setSection] = useState("main");
   const [sintomaIndex, setSintomaIndex] = useState(0);
-  const [color, setColor] = useState("white"); // Para evento de mouse
+  const [color, setColor] = useState("white");
+  const [textColor, setTextColor] = useState("white");
+  const [textPosX, setTextPosX] = useState(0);
   const modelRef = useRef();
 
-  // Evento de teclado: cambiar color con la tecla "c"
-  React.useEffect(() => {
+  const handleTextToggle = () => {
+    setTextColor((prev) => (prev === "white" ? "black" : "white"));
+    setTextPosX((prev) => (prev === 0 ? -10 : 0));
+  };
+
+  // — Eventos de teclado 3D (2) —
+  // c: cambia color y posición del texto
+  // k: vuelve a sección "main"
+  useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "c") {
-        setColor(color === "white" ? "orange" : "white");
+        handleTextToggle();
+      }
+      if (e.key === "k") {
+        setSection("main");
+        setSintomaIndex(0);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [color]);
+  }, []);
+
+  // Alterna color y posición del texto 3D
 
   const handleSiguiente = () => {
     if (sintomaIndex < sintomas.length - 1) {
-      setSintomaIndex(sintomaIndex + 1);
+      setSintomaIndex((i) => i + 1);
     } else {
       setSection("main");
       setSintomaIndex(0);
@@ -59,9 +83,9 @@ const Appendix = () => {
     setSintomaIndex(0);
   };
 
-  // Evento de mouse: click para cambiar color
   const handleModelClick = () => {
-    setColor(color === "white" ? "orange" : "white");
+    // Evento de mouse 3D: onClick en el modelo
+    setColor((prev) => (prev === "white" ? "orange" : "white"));
   };
 
   return (
@@ -91,7 +115,12 @@ const Appendix = () => {
               <button onClick={handleSintomas} className="nav-button">
                 SÍNTOMAS
               </button>
-              <button className="nav-button">TRATAMIENTO</button>
+              <button
+                onClick={() => setSection("tratamiento")}
+                className="nav-button"
+              >
+                TRATAMIENTO
+              </button>
               <button className="nav-button">PREVENCIÓN</button>
             </div>
           </motion.section>
@@ -103,9 +132,7 @@ const Appendix = () => {
             transition={{ type: "tween", duration: 1.5 }}
           >
             <Canvas shadows camera={{ position: [1.2, -1, 18], fov: 50 }}>
-              {/* Iluminación 1: Luz ambiental */}
               <ambientLight intensity={0.5} />
-              {/* Iluminación 2: Luz direccional suave */}
               <directionalLight
                 position={[5, 5, 10]}
                 intensity={1.5}
@@ -119,8 +146,6 @@ const Appendix = () => {
                 shadow-camera-bottom={-10}
               />
               <Appendix3d position={[0, 1, 0]} scale={[7, 7, 7]} />
-
-              {/* Sombra suave */}
               <mesh
                 rotation={[-Math.PI / 2, 0, 0]}
                 position={[0, -0.2, 0]}
@@ -129,7 +154,72 @@ const Appendix = () => {
                 <planeGeometry args={[20, 20]} />
                 <shadowMaterial opacity={0.3} />
               </mesh>
+              <OrbitControls enablePan={false} />
+            </Canvas>
+          </motion.div>
+        </>
+      )}
 
+      {/*** SECCIÓN “TRATAMIENTO” ***/}
+      {section === "tratamiento" && (
+        <>
+          <motion.section
+            className="appendix-text"
+            initial={{ x: "-100vw", opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 1.2 }}
+          >
+            {/* Título y subtítulo fijos */}
+            <h1 className="appendix-title">APENDICITIS</h1>
+            <h2 className="appendix-subtitle">TRATAMIENTO</h2>
+            <p className="appendix-desc">
+              Generalmente, se requiere una cirugía (apendicectomía) para quitar
+              el apéndice, acompañada de antibióticos antes y después para
+              combatir la infección. En casos complicados, puede ser necesario
+              drenar algún absceso.
+            </p>
+            <div className="navigation-buttons">
+              <button onClick={() => setSection("main")} className="nav-button">
+                ¿QUÉ ES?
+              </button>
+              <button onClick={handleSintomas} className="nav-button">
+                SÍNTOMAS
+              </button>
+              <button
+                onClick={() => setSection("tratamiento")}
+                className="nav-button active"
+              >
+                TRATAMIENTO
+              </button>
+              <button className="nav-button">PREVENCIÓN</button>
+            </div>
+          </motion.section>
+
+          <motion.div
+            className="appendix-3d"
+            initial={{ x: "100vw", opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 1.2 }}
+          >
+            <Canvas shadows camera={{ position: [1.2, -1, 18], fov: 50 }}>
+              {/* Mismo modelo 3D que en “main” */}
+              <ambientLight intensity={0.5} />
+              <directionalLight
+                position={[5, 5, 10]}
+                intensity={1.5}
+                castShadow
+                shadow-mapSize-width={1024}
+                shadow-mapSize-height={1024}
+              />
+              <Appendix3d position={[0, 1, 0]} scale={[7, 7, 7]} />
+              <mesh
+                rotation={[-Math.PI / 2, 0, 0]}
+                position={[0, -0.2, 0]}
+                receiveShadow
+              >
+                <planeGeometry args={[20, 20]} />
+                <shadowMaterial opacity={0.3} />
+              </mesh>
               <OrbitControls enablePan={false} />
             </Canvas>
           </motion.div>
@@ -150,10 +240,11 @@ const Appendix = () => {
             <p className="appendix-desc">
               {sintomas[sintomaIndex].descripcion}
             </p>
+
             <div className="navigation-buttons">
               {sintomaIndex > 0 ? (
                 <button
-                  onClick={() => setSintomaIndex(sintomaIndex - 1)}
+                  onClick={() => setSintomaIndex((i) => i - 1)}
                   className="nav-button"
                 >
                   ANTERIOR
@@ -177,66 +268,99 @@ const Appendix = () => {
 
           <motion.div
             className="appendix-3d"
-            initial={{ x: "100vw", opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
+            initial={{ x: "-100vw", opacity: 0 }}
+            animate={{ x: -50, opacity: 1 }}
             transition={{ type: "tween", duration: 1.5 }}
           >
-            <Canvas shadows camera={{ position: [1.2, -1, 18], fov: 50 }}>
-              {/* Iluminación 1: Luz ambiental */}
-              <ambientLight intensity={0.7} />
-              {/* Iluminación 2: Luz direccional dura */}
+            {/* Añadimos onClick al Canvas para cambiar texto */}
+            <Canvas
+              shadows
+              camera={{ position: [1.2, -1, 18], fov: 50 }}
+              onClick={handleTextToggle} //  Click en el canvas
+            >
+              {/* Iluminaciones (3) */}
+              <ambientLight intensity={0.6} />
               <directionalLight
                 position={[-5, 10, 10]}
                 intensity={3}
                 castShadow
-                shadow-mapSize-width={2048}
-                shadow-mapSize-height={2048}
-                shadow-camera-far={50}
-                shadow-camera-left={-10}
-                shadow-camera-right={10}
-                shadow-camera-top={10}
-                shadow-camera-bottom={-10}
               />
-              {/* Sombra dura */}
+              <pointLight position={[0, 5, 5]} intensity={1} castShadow />
+
+              {/* Sombras (2 planos) */}
               <mesh
                 rotation={[-Math.PI / 2, 0, 0]}
                 position={[0, -0.2, 0]}
                 receiveShadow
               >
                 <planeGeometry args={[20, 20]} />
+                <shadowMaterial opacity={0.3} />
+              </mesh>
+              <mesh
+                rotation={[-Math.PI / 2, 0, 0]}
+                position={[0, -0.3, 0]}
+                receiveShadow
+              >
+                <planeGeometry args={[20, 20]} />
                 <shadowMaterial opacity={0.6} />
               </mesh>
 
-              {/* Evento de mouse: click para cambiar color */}
+              {/* Modelo con eventos de mouse 3D (3) */}
               {React.createElement(sintomas[sintomaIndex].Modelo, {
                 position: [0, 0, 0],
                 scale: [7, 7, 7],
                 ref: modelRef,
-                onClick: handleModelClick,
-                color: color,
+                onClick: handleModelClick, // 1) onClick
+                onPointerEnter: () => setColor("lightblue"), // 2) onPointerEnter
+                onWheel: (e) =>
+                  (modelRef.current.rotation.x += e.deltaY * 0.001), // 3) onWheel
+                color,
+                castShadow: true,
+                receiveShadow: true,
               })}
 
-              {/* Elemento HTML 3D */}
-              <Html position={[0, 2, 0]}>
+              {/* Puestas en escena (2) */}
+              <Stars radius={50} depth={50} count={2000} factor={4} />
+              <Environment preset="sunset" background={false} />
+
+              {/* Extras */}
+              <Sky sunPosition={[100, 20, 100]} />
+              <Sparkles count={1000} scale={[10, 10, 10]} />
+
+              {/*** H1 3D: “Appendix” a la izquierda ***/}
+              <Html position={[-13, 2.5, 0]}>
                 <h1
-                  style={{
-                    color: "--color - tertiary",
-                    background: "rgba(255,255,255,0.85)",
-                    padding: "0.5rem 1.5rem",
-                    borderRadius: "12px",
-                    fontSize: "2rem",
-                    fontWeight: "bold",
-                    boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
-                    margin: 0,
+                  className="appendix-title-3d"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    setSection("main");
+                    setSintomaIndex(0);
                   }}
+                >
+                  APPENDIX
+                </h1>
+              </Html>
+
+              {/*** H1 3D: “SÍNTOMAS” a la derecha ***/}
+              <Html position={[5, 2.5, 0]}>
+                <h1
+                  className="appendix-title-3d"
+                  style={{ cursor: "pointer" }}
+                  onClick={handleSiguiente}
                 >
                   SÍNTOMAS
                 </h1>
               </Html>
-
-              {/* Puesta en escena: estrellas y environment */}
-              <Stars radius={50} depth={50} count={2000} factor={4} />
-              <Environment preset="sunset" />
+              {/* Texto 3D con estado de posición y color */}
+              <Text
+                position={[textPosX, 3.5, 0]} // Se mueve en X de 0 a -2
+                fontSize={0.8}
+                anchorX="center"
+                anchorY="middle"
+                color={textColor} // Cambia azul <-> negro
+              >
+                {sintomas[sintomaIndex].titulo}
+              </Text>
 
               <OrbitControls enablePan={false} />
             </Canvas>
