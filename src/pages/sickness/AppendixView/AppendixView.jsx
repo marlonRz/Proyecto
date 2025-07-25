@@ -44,6 +44,7 @@ const Appendix = () => {
   const [textColor, setTextColor] = useState("white");
   const [textPosX, setTextPosX] = useState(0);
   const modelRef = useRef();
+  const cameraRef = useRef();
 
   const handleTextToggle = () => {
     setTextColor((prev) => (prev === "white" ? "black" : "white"));
@@ -61,6 +62,12 @@ const Appendix = () => {
       if (e.key === "k") {
         setSection("main");
         setSintomaIndex(0);
+      }
+      if (e.key === "z" && cameraRef.current) {
+        cameraRef.current.position.z -= 1;
+      }
+      if (e.key === "x" && cameraRef.current) {
+        cameraRef.current.position.z += 1;
       }
     };
     window.addEventListener("keydown", handleKeyDown);
@@ -121,7 +128,12 @@ const Appendix = () => {
               >
                 TRATAMIENTO
               </button>
-              <button className="nav-button">PREVENCIÓN</button>
+              <button
+                onClick={() => setSection("Prevencion")}
+                className="nav-button"
+              >
+                PREVENCIÓN
+              </button>
             </div>
           </motion.section>
 
@@ -137,13 +149,21 @@ const Appendix = () => {
                 position={[5, 5, 10]}
                 intensity={1.5}
                 castShadow
-                shadow-mapSize-width={1024}
+                shadow-normalBias={0.05} // sombras más suaves
+                shadow-mapSize-width={2048}
                 shadow-mapSize-height={1024}
                 shadow-camera-far={50}
                 shadow-camera-left={-10}
                 shadow-camera-right={10}
                 shadow-camera-top={10}
                 shadow-camera-bottom={-10}
+              />
+              <spotLight
+                position={[0, 10, 10]}
+                angle={0.3}
+                penumbra={0.5}
+                intensity={2}
+                castShadow
               />
               <Appendix3d position={[0, 1, 0]} scale={[7, 7, 7]} />
               <mesh
@@ -191,7 +211,12 @@ const Appendix = () => {
               >
                 TRATAMIENTO
               </button>
-              <button className="nav-button">PREVENCIÓN</button>
+              <button
+                onClick={() => setSection("Prevencion")}
+                className="nav-button"
+              >
+                PREVENCIÓN
+              </button>
             </div>
           </motion.section>
 
@@ -208,8 +233,94 @@ const Appendix = () => {
                 position={[5, 5, 10]}
                 intensity={1.5}
                 castShadow
-                shadow-mapSize-width={1024}
+                shadow-normalBias={0.05} // sombras más suaves
+                shadow-mapSize-width={2048}
                 shadow-mapSize-height={1024}
+              />
+              <spotLight
+                position={[0, 10, 10]}
+                angle={0.3}
+                penumbra={0.5}
+                intensity={2}
+                castShadow
+              />
+              <Appendix3d position={[0, 1, 0]} scale={[7, 7, 7]} />
+              <mesh
+                rotation={[-Math.PI / 2, 0, 0]}
+                position={[0, -0.2, 0]}
+                receiveShadow
+              >
+                <planeGeometry args={[20, 20]} />
+                <shadowMaterial opacity={0.3} />
+              </mesh>
+              <OrbitControls enablePan={false} />
+            </Canvas>
+          </motion.div>
+        </>
+      )}
+
+      {/*** SECCIÓN “PREVENCION” ***/}
+      {section === "Prevencion" && (
+        <>
+          <motion.section
+            className="appendix-text"
+            initial={{ x: "-100vw", opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 1.2 }}
+          >
+            {/* Título y subtítulo fijos */}
+            <h1 className="appendix-title">APENDICITIS</h1>
+            <h2 className="appendix-subtitle">PREVENCION</h2>
+            <p className="appendix-desc">
+              No existe una forma infalible de prevenir la apendicitis, pero
+              llevar una dieta rica en fibra y prestar atención a los primeros
+              síntomas puede ayudarte a actuar a tiempo y evitar complicaciones.
+            </p>
+            <div className="navigation-buttons">
+              <button onClick={() => setSection("main")} className="nav-button">
+                ¿QUÉ ES?
+              </button>
+              <button onClick={handleSintomas} className="nav-button">
+                SÍNTOMAS
+              </button>
+              <button
+                onClick={() => setSection("tratamiento")}
+                className="nav-button active"
+              >
+                TRATAMIENTO
+              </button>
+              <button
+                onClick={() => setSection("Prevencion")}
+                className="nav-button"
+              >
+                PREVENCIÓN
+              </button>
+            </div>
+          </motion.section>
+
+          <motion.div
+            className="appendix-3d"
+            initial={{ x: "100vw", opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 1.2 }}
+          >
+            <Canvas shadows camera={{ position: [1.2, -1, 18], fov: 50 }}>
+              {/* Mismo modelo 3D que en “main” */}
+              <ambientLight intensity={0.5} />
+              <directionalLight
+                position={[5, 5, 10]}
+                intensity={1.5}
+                castShadow
+                shadow-normalBias={0.05} // sombras más suaves
+                shadow-mapSize-width={2048}
+                shadow-mapSize-height={1024}
+              />
+              <spotLight
+                position={[0, 10, 10]}
+                angle={0.3}
+                penumbra={0.5}
+                intensity={2}
+                castShadow
               />
               <Appendix3d position={[0, 1, 0]} scale={[7, 7, 7]} />
               <mesh
@@ -276,13 +387,21 @@ const Appendix = () => {
             <Canvas
               shadows
               camera={{ position: [1.2, -1, 18], fov: 50 }}
-              onClick={handleTextToggle} //  Click en el canvas
+              onClick={handleTextToggle}
+              onCreated={({ camera }) => (cameraRef.current = camera)} //  Click en el canvas
             >
               {/* Iluminaciones (3) */}
               <ambientLight intensity={0.6} />
               <directionalLight
                 position={[-5, 10, 10]}
                 intensity={3}
+                castShadow
+              />
+              <spotLight
+                position={[0, 10, 10]}
+                angle={0.3}
+                penumbra={0.5}
+                intensity={2}
                 castShadow
               />
               <pointLight position={[0, 5, 5]} intensity={1} castShadow />
