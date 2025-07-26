@@ -6,6 +6,7 @@ import { OrbitControls, Html, Text } from "@react-three/drei";
 import Diver from "../../../models-3d/Diver";
 import Sintomas_Diver from "../../../models-3d/Sintomas_Diver";
 import Treatment_Diver from "../../../models-3d/Treatment_Diver";
+import Video3DPlane from "./video.jsx"
 
 import { motion } from "framer-motion";
 import { useState } from "react";
@@ -32,7 +33,12 @@ function Diverticulosis() {
           rotation={[0, Math.PI, 0]}
         >
           <Diver />
+          <Video3DPlane />
         </Interactive>
+        
+      ),
+      video:(
+        <Video3DPlane />
       ),
       light: (
         <directionalLight
@@ -235,6 +241,7 @@ return (
           <Floor position={[0, 0, 0]} />
           {contenido[seccion].light}
           {contenido[seccion].objeto3D}
+          {contenido[seccion].video}
           {contenido[seccion].html}
           {contenido[seccion].texto}
           {contenido[seccion].staging}
