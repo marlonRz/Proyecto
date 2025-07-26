@@ -165,7 +165,11 @@ const Appendix = () => {
                 intensity={2}
                 castShadow
               />
-              <Appendix3d position={[0, 1, 0]} scale={[7, 7, 7]} />
+              <Appendix3d
+                position={[0, 1, 0]}
+                scale={[7, 7, 7]}
+                rotation={[Math.PI, 0, 0]}
+              />
               <mesh
                 rotation={[-Math.PI / 2, 0, 0]}
                 position={[0, -0.2, 0]}
@@ -244,7 +248,11 @@ const Appendix = () => {
                 intensity={2}
                 castShadow
               />
-              <Appendix3d position={[0, 1, 0]} scale={[7, 7, 7]} />
+              <Appendix3d
+                position={[0, 1, 0]}
+                scale={[7, 7, 7]}
+                rotation={[Math.PI, 0, 0]}
+              />
               <mesh
                 rotation={[-Math.PI / 2, 0, 0]}
                 position={[0, -0.2, 0]}
@@ -253,6 +261,16 @@ const Appendix = () => {
                 <planeGeometry args={[20, 20]} />
                 <shadowMaterial opacity={0.3} />
               </mesh>
+              {/* TEXTO 3D “Cirugía” en verde */}
+              <Text
+                position={[3, -5, 0]}
+                fontSize={1.2}
+                anchorX="center"
+                anchorY="middle"
+                color="var(--primary-green)"
+              >
+                Cirugía
+              </Text>
               <OrbitControls enablePan={false} />
             </Canvas>
           </motion.div>
@@ -298,22 +316,15 @@ const Appendix = () => {
             </div>
           </motion.section>
 
-          <motion.div
-            className="appendix-3d"
-            initial={{ x: "100vw", opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 1.2 }}
-          >
+          <motion.div className="appendix-3d" /* … */>
             <Canvas shadows camera={{ position: [1.2, -1, 18], fov: 50 }}>
-              {/* Mismo modelo 3D que en “main” */}
+              {/* Iluminación y sombras */}
               <ambientLight intensity={0.5} />
               <directionalLight
                 position={[5, 5, 10]}
                 intensity={1.5}
                 castShadow
-                shadow-normalBias={0.05} // sombras más suaves
-                shadow-mapSize-width={2048}
-                shadow-mapSize-height={1024}
+                /* … ajustes de sombra … */
               />
               <spotLight
                 position={[0, 10, 10]}
@@ -322,7 +333,15 @@ const Appendix = () => {
                 intensity={2}
                 castShadow
               />
-              <Appendix3d position={[0, 1, 0]} scale={[7, 7, 7]} />
+
+              {/* Modelo 3D */}
+              <Appendix3d
+                position={[0, 1, 0]}
+                scale={[7, 7, 7]}
+                rotation={[Math.PI, 0, 0]}
+              />
+
+              {/* Plano de sombra */}
               <mesh
                 rotation={[-Math.PI / 2, 0, 0]}
                 position={[0, -0.2, 0]}
@@ -331,6 +350,19 @@ const Appendix = () => {
                 <planeGeometry args={[20, 20]} />
                 <shadowMaterial opacity={0.3} />
               </mesh>
+
+              {/* --- AÑADE AQUÍ TU TEXTO 3D SOLO PARA Prevencion --- */}
+              <Text
+                position={[0, 6, 0]} // Ajusta altura y posición
+                fontSize={0.7} // Tamaño del texto
+                anchorX="center"
+                anchorY="middle"
+                color="white" // Color que prefieras
+              >
+                Cuidados esenciales
+              </Text>
+
+              {/* Controles de cámara */}
               <OrbitControls enablePan={false} />
             </Canvas>
           </motion.div>
