@@ -5,7 +5,6 @@ const Title = ({ title }) => {
   return (
     <Center position={[0, 1.5, 0]}>
       <Text3D
-        color={"orange"}
         font="fonts/alice.json"
         bevelEnabled
         bevelSize={0.01}
@@ -14,9 +13,15 @@ const Title = ({ title }) => {
         lineHeight={0.8}
         letterSpacing={0.02}
         size={0.3}
+        color="#db1212ff"  // Naranja oscuro (DarkOrange)
+        fillMaterial={{
+          color: "#ca1313ff",  // Marrón muy oscuro (para relleno o sombras)
+          metalness: 0.5,    // Añade un toque metálico si quieres
+          roughness: 0.7,
+        }}
       >
         {`\n    ${title} `}
-        <meshNormalMaterial />
+        <meshStandardMaterial/>
       </Text3D>
     </Center>
     // <Text
