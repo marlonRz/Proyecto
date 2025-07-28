@@ -1,4 +1,29 @@
-.btn-handle-progress{
-    margin: 5px;
-    background-color: black;
+.quiz-ui {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 15px 25px;
+  border-radius: 12px;
+  color: white;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+}
+
+.btn-handle-progress {
+  margin-top: 10px;
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-handle-progress:hover {
+  background-color: #222;
 }

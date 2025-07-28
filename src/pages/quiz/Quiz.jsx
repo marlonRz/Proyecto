@@ -1,20 +1,26 @@
-import "./Quiz.css"
-import { useCallback } from "react";
+import "./Quiz.css";
 import useQuizStore from "../../stores/use-quiz-store.js";
 import Button from "../../components/button/Button.jsx";
+import QuizBallGame from "./QuizBallGame.jsx";
+
 const Quiz = () => {
-    const {quiz, incrementQuizProgress} = useQuizStore();
+  const { quiz } = useQuizStore();
 
-    const handleQuizNext = useCallback(() => {
-        incrementQuizProgress();
-    }, [incrementQuizProgress]);
+  return (
+    <>
+      <div className="quiz-ui">
+        <h1>Quiz</h1>
+        <p>Progreso: {quiz.percentageQuizCompleted}%</p>
+        <Button
+          className="btn-handle-progress"
+          text="Siguiente"
+          onClick={() => console.log("Siguiente")}
+        />
+      </div>
 
-    return (
-        <div>
-            <h1>Quiz</h1>
-            <span>Progreso del quiz: {quiz.percentageQuizCompleted} %</span>
-            <Button className="btn-handle-progress" text="Siguiente" width="180px" heigth="50px" onClick={handleQuizNext}/>
-        </div>
-    );
+      <QuizBallGame />
+    </>
+  );
 };
+
 export default Quiz;
