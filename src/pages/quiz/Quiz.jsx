@@ -4,18 +4,16 @@ import Button from "../../components/button/Button.jsx";
 import QuizBallGame from "./QuizBallGame.jsx";
 
 const Quiz = () => {
-  const { quiz } = useQuizStore();
+  const { quiz, clearQuiz } = useQuizStore();
 
   return (
     <>
       <div className="quiz-ui">
-        <h1>Quiz</h1>
-        <p>Progreso: {quiz.percentageQuizCompleted}%</p>
-        <Button
-          className="btn-handle-progress"
-          text="Siguiente"
-          onClick={() => console.log("Siguiente")}
-        />
+        <div className="quiz-stats">
+          <span>✅ Aciertos: {quiz.correctAnswers}</span>
+          <span>❌ Errores: {quiz.incorrectAnswers}</span>
+          <span>📊 Progreso: {quiz.percentageQuizCompleted}%</span>
+        </div>
       </div>
 
       <QuizBallGame />

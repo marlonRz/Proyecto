@@ -6,16 +6,29 @@ const useQuizStore = create((set) =>({
     incorrectAnswers: 0,
     percentageQuizCompleted: 0,
   },
-  incrementQuizProgress: ()=>
+  incrementQuizProgress: (isCorrect) =>
     set((state) => {
+      const newCorrect = isCorrect
+        ? state.quiz.correctAnswers + 1
+        : state.quiz.correctAnswers;
+
+      const newIncorrect = !isCorrect
+        ? state.quiz.incorrectAnswers + 1
+        : state.quiz.incorrectAnswers;
+
+      const progressStep = 100 / 4; // o usa quizData.length
+
       const newPercentage = Math.min(
-        state.quiz.percentageQuizCompleted + 25,
+        state.quiz.percentageQuizCompleted + (isCorrect ? progressStep : 0),
         100
       );
+
       return {
         quiz: {
-          ...state.quiz,
-          percentageQuizCompleted: newPercentage},
+          correctAnswers: newCorrect,
+          incorrectAnswers: newIncorrect,
+          percentageQuizCompleted: newPercentage,
+        },
       };
     }),
     clearQuiz: ()=>
