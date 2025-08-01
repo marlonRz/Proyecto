@@ -2,6 +2,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./AppendixView.css";
 import { Canvas } from "@react-three/fiber";
+import Video3DAppendix from "./VideoAppendix.jsx";
 import {
   OrbitControls,
   Environment,
@@ -43,6 +44,7 @@ const Appendix = () => {
   const [color, setColor] = useState("white");
   const [textColor, setTextColor] = useState("white");
   const [textPosX, setTextPosX] = useState(0);
+  const [showVideo, setShowVideo] = useState(false);
   const modelRef = useRef();
   const cameraRef = useRef();
 
@@ -73,6 +75,10 @@ const Appendix = () => {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
+
+  useEffect(() => {
+    setShowVideo(false);
+  }, [section]);
 
   // Alterna color y posición del texto 3D
 
@@ -231,13 +237,13 @@ const Appendix = () => {
             transition={{ duration: 1.2 }}
           >
             <Canvas shadows camera={{ position: [1.2, -1, 18], fov: 50 }}>
-              {/* Mismo modelo 3D que en “main” */}
+              {/* Iluminación */}
               <ambientLight intensity={0.5} />
               <directionalLight
                 position={[5, 5, 10]}
                 intensity={1.5}
                 castShadow
-                shadow-normalBias={0.05} // sombras más suaves
+                shadow-normalBias={0.05}
                 shadow-mapSize-width={2048}
                 shadow-mapSize-height={1024}
               />
@@ -248,11 +254,62 @@ const Appendix = () => {
                 intensity={2}
                 castShadow
               />
+
+              {/* Modelo 3D: lo mantenemos siempre en el árbol, pero controlamos su visibilidad */}
               <Appendix3d
                 position={[0, 1, 0]}
                 scale={[7, 7, 7]}
                 rotation={[Math.PI, 0, 0]}
+                visible={!showVideo}
               />
+
+              {/* Video 3D: solo cuando showVideo === true */}
+              {showVideo && <Video3DAppendix playing={showVideo} />}
+
+              {/* Texto 3D “CIRUGÍA” siempre existe, pero lo ocultamos cuando mostramos el video */}
+              <Html position={[3, -3, 0]} center>
+                <h1
+                  onClick={() => {
+                    console.log("clic CIRUGÍA, showVideo:", showVideo);
+                    setShowVideo(true);
+                  }}
+                  style={{
+                    color: "green",
+                    cursor: "pointer",
+                    fontSize: "2rem",
+                    fontWeight: "bold",
+                    textAlign: "center",
+                    textShadow: "1px 1px 2px black",
+                    display: showVideo ? "none" : "block",
+                  }}
+                >
+                  CIRUGÍA
+                </h1>
+              </Html>
+
+              {/* Botón “Volver al modelo”: solo aparece sobre el video */}
+              <Html position={[0, -5, 0]} center>
+                <button
+                  onClick={() => {
+                    console.log("clic Volver, showVideo:", showVideo);
+                    setShowVideo(false);
+                  }}
+                  style={{
+                    padding: "10px 20px",
+                    backgroundColor: "#4CAF50",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "10px",
+                    fontSize: "1rem",
+                    cursor: "pointer",
+                    display: showVideo ? "block" : "none",
+                  }}
+                >
+                  Volver al modelo
+                </button>
+              </Html>
+
+              {/* Suelo de sombra */}
               <mesh
                 rotation={[-Math.PI / 2, 0, 0]}
                 position={[0, -0.2, 0]}
@@ -261,16 +318,8 @@ const Appendix = () => {
                 <planeGeometry args={[20, 20]} />
                 <shadowMaterial opacity={0.3} />
               </mesh>
-              {/* TEXTO 3D “Cirugía” en verde */}
-              <Text
-                position={[3, -5, 0]}
-                fontSize={1.2}
-                anchorX="center"
-                anchorY="middle"
-                color="var(--primary-green)"
-              >
-                Cirugía
-              </Text>
+
+              {/* Controles de cámara */}
               <OrbitControls enablePan={false} />
             </Canvas>
           </motion.div>
