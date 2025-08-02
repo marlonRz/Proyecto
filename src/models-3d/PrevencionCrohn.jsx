@@ -7,8 +7,8 @@ const PrevencionCrohn = (props) => {
   const modelRef = useRef();
 
   useEffect(() => {
-    scene.scale.set(2.2, 2.2, 2.2); // Más grande
-    scene.position.set(0, 0, 0);
+    scene.scale.set(1.6, 1.6, 1.6); // Más grande
+    scene.position.set(0.9, 0.9, 0.9);
     modelRef.current = scene;
   }, [scene]);
 
