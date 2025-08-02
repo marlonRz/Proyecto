@@ -1,19 +1,24 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import {getAuth} from "firebase/auth";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+// src/firebase/firebase.config.js
 
-// Your web app's Firebase configuration
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+
+// Configuración de Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyA-FTnbwZEx-gSCD-yz3i-9w5twmU-SuVo",
   authDomain: "sesion-3-a59b1.firebaseapp.com",
   projectId: "sesion-3-a59b1",
-  storageBucket: "sesion-3-a59b1.firebasestorage.app",
+  storageBucket: "sesion-3-a59b1.appspot.com", // ← corrección aquí también
   messagingSenderId: "869735919349",
   appId: "1:869735919349:web:f43f53d0acfe0859ae5fbc"
 };
 
-// Initialize Firebase
+// Inicializa Firebase
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+const db = getFirestore(app);
+const auth = getAuth(app);
+
+// ✅ Exporta por defecto y también nombrados (opcional)
+export { auth, db };
+export default db;

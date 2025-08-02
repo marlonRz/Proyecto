@@ -1,0 +1,27 @@
+.scoreboard {
+  margin: 20px auto;
+  width: 90%;
+  max-width: 600px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+}
+
+.scoreboard table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.scoreboard th,
+.scoreboard td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.scoreboard th {
+  background-color: #f8f8f8;
+}
