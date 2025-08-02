@@ -5,32 +5,44 @@ const useQuizStore = create((set) => ({
   quiz: {
     correctAnswers: 0,
     incorrectAnswers: 0,
-    isFinished: false,
+    percentageQuizCompleted: 0,
+    answers: [], // ⬅️ Agrega este campo
   },
+  incrementQuizProgress: (isCorrect, questionObj, selectedOption) =>
+    set((state) => {
+      const newCorrect = isCorrect ? state.quiz.correctAnswers + 1 : state.quiz.correctAnswers;
+      const newIncorrect = !isCorrect ? state.quiz.incorrectAnswers + 1 : state.quiz.incorrectAnswers;
+      const progressStep = 100 / 4; // o quizData.length
+      const newPercentage = Math.min(
+        state.quiz.percentageQuizCompleted + (isCorrect ? progressStep : 0),
+        100
+      );
 
-  incrementQuizProgress: (isCorrect) =>
-    set((state) => ({
-      quiz: {
-        correctAnswers: isCorrect ? state.quiz.correctAnswers + 1 : state.quiz.correctAnswers,
-        incorrectAnswers: !isCorrect ? state.quiz.incorrectAnswers + 1 : state.quiz.incorrectAnswers,
-        isFinished: false,
-      },
-    })),
-
-  setFinished: () =>
-    set((state) => ({
-      quiz: {
-        ...state.quiz,
-        isFinished: true,
-      },
-    })),
-
+      return {
+        quiz: {
+          ...state.quiz,
+          correctAnswers: newCorrect,
+          incorrectAnswers: newIncorrect,
+          percentageQuizCompleted: newPercentage,
+          answers: [
+            ...state.quiz.answers,
+            {
+              question: questionObj.question,
+              correctAnswer: questionObj.options[questionObj.correctIndex],
+              selectedAnswer: selectedOption,
+              isCorrect,
+            },
+          ],
+        },
+      };
+    }),
   clearQuiz: () =>
     set({
       quiz: {
         correctAnswers: 0,
         incorrectAnswers: 0,
-        isFinished: false,
+        percentageQuizCompleted: 0,
+        answers: [],
       },
     }),
 }));

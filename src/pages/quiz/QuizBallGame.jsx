@@ -8,6 +8,7 @@ import Court from "../../models-3d/Court";
 import quizData from "./quizData";
 import useQuizStore from "../../stores/use-quiz-store";
 import saveScore from "../../stores/saveScore";
+import QuizResults from "../../components/QuizResults"; // <-- nuevo componente para mostrar resultados
 
 function Floor() {
   return (
@@ -24,18 +25,19 @@ export default function QuizBallGame() {
   const ballRef = useRef();
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [locked, setLocked] = useState(false);
-  const { incrementQuizProgress, clearQuiz, quiz } = useQuizStore();
+  const [showResults, setShowResults] = useState(false);
   const [hasSaved, setHasSaved] = useState(false);
 
+  const { incrementQuizProgress, clearQuiz, quiz } = useQuizStore();
   const question = quizData[currentQuestionIndex];
   const positions = [-6, -2, 2, 6];
   const colors = ["#e74c3c", "#2ecc71", "#3498db", "#9b59b6"];
 
-  const handleAnswer = (isCorrect) => {
+  const handleAnswer = (isCorrect, selectedOption) => {
     if (locked) return;
     setLocked(true);
 
-    incrementQuizProgress(isCorrect);
+    incrementQuizProgress(isCorrect, question, selectedOption);
 
     setTimeout(() => {
       const next = currentQuestionIndex + 1;
@@ -43,23 +45,33 @@ export default function QuizBallGame() {
       if (next < quizData.length) {
         setCurrentQuestionIndex(next);
       } else {
-        // Quiz terminado
+        setShowResults(true);
         const name = prompt("🎉 ¡Has completado el quiz! Ingresa tu nombre:");
         if (name && !hasSaved) {
           saveScore(name, quiz);
           setHasSaved(true);
         }
-
-        // Reiniciar quiz automáticamente
-        clearQuiz();
-        setCurrentQuestionIndex(0);
-        setHasSaved(false);
       }
 
       ballRef.current?.resetBall();
       setLocked(false);
     }, 1000);
   };
+
+  const restartQuiz = () => {
+    clearQuiz();
+    setCurrentQuestionIndex(0);
+    setHasSaved(false);
+    setShowResults(false);
+  };
+
+  if (showResults) {
+    return (
+      <div style={{ padding: "2rem" }}>
+        <QuizResults onRestart={restartQuiz} />
+      </div>
+    );
+  }
 
   return (
     <div style={{ width: "100%", height: "100vh" }}>
@@ -79,7 +91,7 @@ export default function QuizBallGame() {
               ballRef={ballRef}
               label={opt}
               isCorrect={index === question.correctIndex}
-              onAnswered={handleAnswer}
+              onAnswered={(isCorrect) => handleAnswer(isCorrect, opt)}
             />
           ))}
         </Physics>

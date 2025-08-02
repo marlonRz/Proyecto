@@ -1,14 +1,12 @@
 import { RigidBody } from "@react-three/rapier";
 import { Html } from "@react-three/drei";
-import { useEffect } from "react";
 
 export default function Court({ position, color, ballRef, isCorrect, onAnswered, label }) {
   const handleCollision = (event) => {
     const other = event.other;
     if (other.rigidBodyObject?.name === "ball") {
-      onAnswered(isCorrect);
+      onAnswered(isCorrect, label); // ahora envía también la respuesta seleccionada
 
-      // Reinicia el balón después de 1 segundo
       setTimeout(() => {
         ballRef.current?.resetBall();
       }, 1000);
@@ -17,14 +15,11 @@ export default function Court({ position, color, ballRef, isCorrect, onAnswered,
 
   return (
     <group position={position}>
-      {/* Piso cancha */}
-      <RigidBody
-        type="fixed"
-        onCollisionEnter={handleCollision}
-      >
+      <RigidBody type="fixed" onCollisionEnter={handleCollision}>
+        {/* Piso cancha */}
         <mesh receiveShadow>
           <boxGeometry args={[4, 0.1, 6]} />
-          <meshStandardMaterial color="#2ecc71" />
+          <meshStandardMaterial color={color} />
         </mesh>
 
         {/* Arco tipo portería */}
