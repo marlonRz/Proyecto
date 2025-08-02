@@ -7,8 +7,8 @@ const SintomasCrohn = (props) => {
    const sintomasRef = useRef();
 
    useEffect(() => {
-      scene.scale.set(1.2, 1.2, 1.2);  // Tamaño (escala)
-      scene.position.set(0, 0.3, 0);   // Posición [x, y, z]
+      scene.scale.set(1.6, 1.6, 1.6);  // Tamaño (escala)
+      scene.position.set(0.9, 1, 0.9);   // Posición [x, y, z]
    }, [scene]);
 
    useFrame((state, delta) => {

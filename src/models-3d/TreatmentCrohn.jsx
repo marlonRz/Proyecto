@@ -7,8 +7,8 @@ const TreatmentCrohn = (props) => {
   const treatmentRef = useRef();
 
   useEffect(() => {
-    scene.scale.set(1.4, 1.4, 1.4);
-    scene.position.set(0.12, 0.12, 0.12);
+    scene.scale.set(1.8, 1.8, 1.8);
+    scene.position.set(0.9, 0.9, 0.9);
   }, [scene]);
 
   // Rotación suave automática

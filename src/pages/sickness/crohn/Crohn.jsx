@@ -151,12 +151,12 @@ function Crohn() {
       sonido: userInteracted && <Sound3D url={ambientSoundUrl} />
     },
     'sintomas': {
-      titulo: 'SÍNTOMAS',
+      titulo: 'SINTOMAS',
       descripcion: [`Dolor abdominal, diarrea persistente, fatiga, pérdida de peso, fiebre, náuseas, aftas y problemas en articulaciones.`],
       objeto3D: <AnimatedModel hover={hover}><SintomasCrohn scale={[1.3, 1.3, 1.3]} /></AnimatedModel>,
       titulo3D: (
         <Text3D font={fontUrl} size={0.5} height={0.1} position={[-2, 3.2, 0]}>
-          SÍNTOMAS
+          SINTOMAS
           <meshStandardMaterial color="red" />
         </Text3D>
       ),
@@ -189,12 +189,12 @@ function Crohn() {
       staging: <Environment preset="sunset" />
     },
     'prevencion': {
-      titulo: 'PREVENCIÓN',
+      titulo: 'PREVENCION',
       descripcion: [`Mantén una dieta equilibrada, evita el tabaco y controla el estrés para reducir riesgos de brotes.`],
       objeto3D: <AnimatedModel hover={hover}><PrevencionCrohn scale={[3, 3, 3]} /></AnimatedModel>,
       titulo3D: (
         <Text3D font={fontUrl} size={0.5} height={0.1} position={[-1.8, 3, 0]}>
-          PREVENCIÓN
+          PREVENCION
           <meshStandardMaterial color="green" />
         </Text3D>
       ),
