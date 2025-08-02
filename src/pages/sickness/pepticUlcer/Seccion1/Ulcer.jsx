@@ -66,7 +66,7 @@ function Ulcer() {
         objeto3D: <VomitPerson position={[0, -0.9, 0]} scale={[1, 1, 1]} />,
         light: <spotLight color={"red"} position={[4,5,-2]} distance={20} intensity={1000} angle={Math.PI / 14} penumbra={1} castShadow={true}/>,
         staging: <Staging2/>,
-        html: <Title title={"Sintomas"} />,
+        html: <Title title={"Vomito"} />,
         texto: <Html 
                 position={[0, 1, 0]}
                 distanceFactor={5}
@@ -88,7 +88,7 @@ function Ulcer() {
         objeto3D: <Medicine position={[0, -0.24, 0]} scale={[3, 3, 3]} />,
         light: <pointLight color={"cyan"} position={[0,0,0]} intensity={10} castShadow={true}/>,
         staging: <Staging3/>,
-        html: <Title title={"Tratamiento"}/>,
+        html: <Title title={"Medicamentos"}/>,
         
     },
     'prevencion': {
@@ -96,6 +96,9 @@ function Ulcer() {
         descripcion: ['Cambios en el  estilo de vida, como evitar el alcohol, el tabaco, los alimentos  irritantes y el estrés.',
           'Llevar una dieta equilibrada, limitando alimentos picantes, ácidos o muy grasosos.'],
         objeto3D: <Dumbbell position={[0, -1, 0]} scale={[7, 7, 7]} />,
+        light: <spotLight color={"red"} position={[4,5,-2]} distance={20} intensity={1000} angle={Math.PI / 14} penumbra={1} castShadow={true}/>,
+        staging: <Staging1/>,
+        html: <Title title={"Ejercicio"}/>,
     }
   };
 
